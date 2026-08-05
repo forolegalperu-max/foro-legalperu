@@ -15,8 +15,8 @@ export const brand = {
   foundedYear: 2019,
   email: 'forolegalperu@gmail.com',
   // Todo contacto general (WhatsApp, botón flotante, footer) redirige aquí.
-  whatsappLink: 'https://wa.link/lm3231',
-  whatsappNumber: '51987654321',
+  whatsappLink: 'https://wa.link/p92zdr',
+  whatsappNumber: '51956484193',
   paymentWhatsapp: '+51 956 484 193',
 };
 
