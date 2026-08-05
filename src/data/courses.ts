@@ -92,7 +92,7 @@ export const courses: Course[] = [
     presaleDeadline: '2026-07-16',
     externalSyllabusUrl: 'https://canva.link/8w9kix56qrkdtn9',
     externalRegistrationUrl: 'https://forms.gle/3RDVJfubbFzAjpAC6',
-    contactPhones: ['+51 982 870 467', '+51 956 484 193'],
+    contactPhones: ['+51 956 484 193'],
   },
   {
     id: 'redaccion-contratos-tipicos',
@@ -116,8 +116,8 @@ export const courses: Course[] = [
       'Contrato de arrendamiento con cláusula de allanamiento a futuro (desalojo) y contrato de locación de servicios',
       'Contrato de mutuo (préstamo de dinero) y cláusulas estratégicas aplicables a todo contrato',
     ],
-    contactPhones: ['+51 982 870 467'],
-    whatsappOverride: '51982870467',
+    contactPhones: ['+51 956 484 193'],
+    whatsappOverride: '51956484193',
   },
   {
     id: 'derecho-empresarial-gestion-legal',
@@ -142,8 +142,8 @@ export const courses: Course[] = [
       'Contratación laboral',
       'Prevención de contingencias legales en materia laboral',
     ],
-    contactPhones: ['+51 982 870 467'],
-    whatsappOverride: '51982870467',
+    contactPhones: ['+51 956 484 193'],
+    whatsappOverride: '51956484193',
   },
   {
     id: 'compliance-corporativo',
