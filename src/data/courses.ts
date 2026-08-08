@@ -52,47 +52,75 @@ export interface Course {
   whatsappOverride?: string;
   // true = curso grabado/asíncrono de acceso inmediato (sin fecha de inicio en vivo).
   isRecorded?: boolean;
+  // Costo adicional opcional por constancia de participación (solo cursos grabados).
+  certificateAddOnPrice?: number;
   // true = solo muestra nombre y área, con una etiqueta "Próximamente" (sin precio, docente ni detalles).
   comingSoon?: boolean;
 }
 
 export const courses: Course[] = [
   {
+    id: 'compliance-360',
+    name: 'Compliance 360°: Gestión Antisoborno, SPLAFT y Protección de Datos',
+    area: 'Compliance',
+    summary: 'Curso práctico dictado por especialistas: sistemas de gestión antisoborno, SPLAFT y protección de datos personales.',
+    description:
+      'Fortalece tu perfil profesional con un curso práctico dictado por especialistas con amplia experiencia en Compliance, gestión de riesgos y derecho corporativo. Tres sesiones en vivo sobre sistemas de gestión de compliance, prevención de lavado de activos (SPLAFT) y protección de datos personales.',
+    startDate: '2026-08-27',
+    duration: '3 días',
+    modality: 'Online en vivo',
+    sessions: 3,
+    price: 50,
+    currency: 'PEN',
+    featured: true,
+    level: 'Intermedio',
+    benefits: [
+      'Clases grabadas',
+      'Materiales y bibliografía',
+      'Constancia de participación',
+      'Acceso a las 3 sesiones en vivo',
+    ],
+    schedule: [
+      { date: '27 de agosto', time: '7:00 p.m. – 9:00 p.m.', topic: 'Sistemas de Gestión de Compliance', speaker: 'David Caballero' },
+      { date: '28 de agosto', time: '7:00 p.m. – 9:00 p.m.', topic: 'SPLAFT', speaker: 'Carlos Hermoza' },
+      { date: '29 de agosto', time: '10:00 a.m. – 12:00 p.m.', topic: 'Protección de Datos Personales', speaker: 'Jeampier Aquino' },
+    ],
+    pricingTiers: [
+      { label: 'Estudiantes', price: 50 },
+      { label: 'Público general', price: 70 },
+      { label: 'Corporativo', price: 65, note: 'por persona, desde 3 participantes' },
+    ],
+    presaleDeadline: '2026-08-16',
+    externalSyllabusUrl: 'https://canva.link/c6x8oa9lft07o3r',
+    externalRegistrationUrl: 'https://forms.gle/vjPHsWVmPTjMFKTz8',
+    contactPhones: ['+51 956 484 193'],
+  },
+  {
     id: 'rol-estrategico-abogado-corporativo',
     name: 'El Rol Estratégico del Abogado Corporativo',
     area: 'Corporativo',
-    summary: 'Herramientas para la práctica empresarial: 3 sesiones en vivo sobre derecho societario, contratos y compliance.',
+    summary: 'Herramientas para la práctica empresarial: derecho societario, contratos y compliance corporativo, ahora en clases grabadas.',
     description:
-      'Programa intensivo de tres días dirigido a estudiantes de Derecho, egresados y practicantes que buscan ingresar o fortalecer su perfil en el mundo corporativo jurídico. Incluye una charla de desarrollo profesional y tres módulos especializados dictados por abogados en ejercicio.',
+      'Programa grabado dirigido a estudiantes de Derecho, egresados y practicantes que buscan ingresar o fortalecer su perfil en el mundo corporativo jurídico. Incluye una charla de desarrollo profesional y tres módulos especializados dictados por abogados en ejercicio.',
     startDate: '2026-07-29',
-    duration: '3 días',
-    modality: 'Online en vivo',
+    duration: '4 módulos',
+    modality: 'Grabado',
     sessions: 4,
-    price: 35,
+    price: 20,
     currency: 'PEN',
-    featured: true,
+    featured: false,
     level: 'Introductorio',
-    benefits: [
-      'Ingreso a todas las sesiones en vivo',
-      'Materiales y libros virtuales',
-      'Constancia de participación',
-      'Clases grabadas',
+    isRecorded: true,
+    benefits: ['Clases 100% prácticas', 'Material de estudio', 'Clases grabadas'],
+    contentModules: [
+      'Cómo ingresar al mundo corporativo — Angelo Enciso',
+      'Derecho Societario Aplicado — Gerardo Guzmán',
+      'Contratos Empresariales — Doris Álvaro',
+      'Compliance Corporativo — David Caballero',
     ],
-    schedule: [
-      { date: '29 de julio', time: '5:00 p.m. – 5:50 p.m.', topic: 'Cómo ingresar al mundo corporativo', speaker: 'Angelo Enciso' },
-      { date: '29 de julio', time: '6:00 p.m. – 8:00 p.m.', topic: 'Derecho Societario Aplicado', speaker: 'Gerardo Guzmán' },
-      { date: '30 de julio', time: '6:00 p.m. – 8:00 p.m.', topic: 'Contratos Empresariales', speaker: 'Doris Álvaro' },
-      { date: '31 de julio', time: '6:00 p.m. – 8:00 p.m.', topic: 'Compliance Corporativo', speaker: 'David Caballero' },
-    ],
-    pricingTiers: [
-      { label: 'Estudiantes', price: 35 },
-      { label: 'Público general', price: 45 },
-      { label: 'Corporativo', price: 40, note: 'por persona, desde 3 participantes' },
-    ],
-    presaleDeadline: '2026-07-16',
-    externalSyllabusUrl: 'https://canva.link/8w9kix56qrkdtn9',
-    externalRegistrationUrl: 'https://forms.gle/3RDVJfubbFzAjpAC6',
     contactPhones: ['+51 956 484 193'],
+    whatsappOverride: '51956484193',
+    certificateAddOnPrice: 5,
   },
   {
     id: 'redaccion-contratos-tipicos',
@@ -105,7 +133,7 @@ export const courses: Course[] = [
     duration: '3 módulos',
     modality: 'Grabado',
     sessions: 3,
-    price: 15,
+    price: 20,
     currency: 'PEN',
     featured: false,
     level: 'Introductorio',
@@ -118,6 +146,7 @@ export const courses: Course[] = [
     ],
     contactPhones: ['+51 956 484 193'],
     whatsappOverride: '51956484193',
+    certificateAddOnPrice: 5,
   },
   {
     id: 'derecho-empresarial-gestion-legal',
@@ -130,7 +159,7 @@ export const courses: Course[] = [
     duration: '4 módulos',
     modality: 'Grabado',
     sessions: 4,
-    price: 15,
+    price: 20,
     currency: 'PEN',
     featured: false,
     level: 'Introductorio',
@@ -144,29 +173,7 @@ export const courses: Course[] = [
     ],
     contactPhones: ['+51 956 484 193'],
     whatsappOverride: '51956484193',
-  },
-  {
-    id: 'compliance-corporativo',
-    name: 'Compliance Corporativo',
-    area: 'Compliance',
-    teacherId: 'daniela-ferreyra',
-    comingSoon: true,
-    summary: 'Diseño e implementación de programas de cumplimiento normativo y prevención de riesgos legales.',
-    description:
-      'Revisa los fundamentos del compliance en Perú y la región: mapas de riesgo, canales de denuncia, debida diligencia de terceros y responsabilidad administrativa de personas jurídicas.',
-    startDate: '2026-09-07',
-    duration: '5 semanas',
-    modality: 'Online en vivo',
-    sessions: 10,
-    price: 790,
-    currency: 'PEN',
-    rating: 4.7,
-    studentsEnrolled: 156,
-    totalSpots: 40,
-    spotsLeft: 22,
-    featured: false,
-    level: 'Intermedio',
-    benefits: ['Plantilla de matriz de riesgos', 'Constancia de participación digital', 'Comunidad privada de compliance'],
+    certificateAddOnPrice: 5,
   },
 ];
 

@@ -4,7 +4,7 @@ import { ArrowRight, ArrowUpRight, Sparkles } from 'lucide-react';
 import { brand } from '../../data/site';
 import { stats } from '../../data/stats';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
-import proximoCursoImg from '../../assets/curso-abogado-corporativo.jpeg';
+import proximoCursoImg from '../../assets/curso-compliance-360.jpg';
 
 const studentsStat = stats.find((s) => s.id === 'students')!;
 const teachersStat = stats.find((s) => s.id === 'teachers')!;
@@ -164,7 +164,7 @@ export function Hero() {
           >
             <img
               src={proximoCursoImg}
-              alt="Próximo curso: El rol estratégico del abogado corporativo, del 29 al 31 de julio, modalidad virtual"
+              alt="Próximo curso: Compliance 360°, Gestión Antisoborno, SPLAFT y Protección de Datos, del 27 al 29 de agosto, modalidad virtual"
               className="block w-full h-auto"
             />
           </motion.div>
@@ -190,7 +190,7 @@ export function Hero() {
             className="absolute -bottom-7 -right-6 rounded-2xl bg-coral text-cream shadow-card px-4 py-3 hidden sm:block"
           >
             <p className="text-[11px] text-cream/80">Próximo inicio</p>
-            <p className="font-display text-sm font-semibold">29 de julio</p>
+            <p className="font-display text-sm font-semibold">27 de agosto</p>
           </motion.div>
         </div>
       </div>

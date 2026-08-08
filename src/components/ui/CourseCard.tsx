@@ -150,6 +150,11 @@ export function CourseCard({ course, onOpen, index = 0 }: CourseCardProps) {
                 <span className="block text-xs text-ink-muted line-through">{formatCurrency(course.originalPrice)}</span>
               )}
               <span className="font-display text-2xl font-semibold text-ink">{formatCurrency(course.price)}</span>
+              {course.certificateAddOnPrice != null && (
+                <span className="block text-[11px] text-ink-muted mt-0.5">
+                  +{formatCurrency(course.certificateAddOnPrice)} constancia (opcional)
+                </span>
+              )}
             </>
           )}
         </div>

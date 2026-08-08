@@ -19,7 +19,7 @@ export const faqItems: FaqItem[] = [
     id: 'constancia',
     question: '¿Obtengo un certificado al finalizar?',
     answer:
-      'Emitimos una constancia de participación a nombre de la Sociedad Peruana de Formación y Práctica Jurídica S.A.C., por la cantidad de horas correspondiente a cada curso, al completar el 80% de las sesiones.',
+      'Emitimos una constancia de participación a nombre de la Sociedad Peruana de Formación y Práctica Jurídica S.A.C., por la cantidad de horas correspondiente a cada curso, al completar el 80% de las sesiones. En los cursos grabados, la constancia es opcional y tiene un costo adicional de S/ 5.',
   },
   {
     id: 'grabaciones',

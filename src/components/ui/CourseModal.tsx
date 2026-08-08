@@ -175,6 +175,11 @@ export function CourseModal({ course, onClose }: CourseModalProps) {
                     </li>
                   ))}
                 </ul>
+                {course.certificateAddOnPrice != null && (
+                  <p className="mt-3 text-xs text-ink-muted">
+                    Constancia de participación (opcional): +{formatCurrency(course.certificateAddOnPrice)}
+                  </p>
+                )}
               </div>
 
               {course.pricingTiers && (
