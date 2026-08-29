@@ -23,4 +23,11 @@ export const libraryBooks: LibraryBook[] = [
       'Colección de 68 libros que cubren las principales áreas del Derecho (constitucional, penal, civil, laboral, corporativo y más), publicados por el Fondo Editorial de la PUCP.',
     fileUrl: 'https://drive.google.com/drive/folders/1_FJQcfOwBMDcIxPAGil8h8iPBtHQ1I4W?usp=share_link',
   },
+  {
+    id: 'mi-primer-juicio-de-familia',
+    title: 'Mi primer Juicio de Familia',
+    category: 'Familia',
+    description: 'Guía práctica para afrontar tu primer proceso judicial en materia de familia.',
+    fileUrl: 'https://drive.google.com/file/d/1U85BdfOjH5z9X01xfNL-ULwvwRmMDUTz/view?usp=share_link',
+  },
 ];
