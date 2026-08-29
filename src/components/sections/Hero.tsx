@@ -184,6 +184,25 @@ export function Hero() {
             </div>
           </motion.div>
 
+          {/* temario thumbnail — mobile (inline, below the main image) */}
+          <button
+            type="button"
+            onClick={() => setLightbox({ src: temarioImg, alt: temarioAlt })}
+            data-cursor-hover
+            className="group mt-4 flex w-full items-center gap-3 rounded-2xl bg-paper p-2.5 shadow-card sm:hidden"
+          >
+            <span className="block h-14 w-14 shrink-0 overflow-hidden rounded-lg">
+              <img src={temarioImg} alt={temarioAlt} className="block h-full w-full object-cover" />
+            </span>
+            <span className="flex flex-1 items-center justify-between">
+              <span className="text-left">
+                <span className="block text-xs font-semibold text-ink">Ver temario completo</span>
+                <span className="block text-[11px] text-ink-muted">Programa de las 3 sesiones</span>
+              </span>
+              <ZoomIn size={16} className="mr-1.5 shrink-0 text-ink-muted" />
+            </span>
+          </button>
+
           {/* floating badge 1 */}
           <motion.div
             style={reducedMotion ? undefined : { x: badgeX, y: badgeY }}
