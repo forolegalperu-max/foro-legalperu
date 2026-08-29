@@ -4,7 +4,7 @@
 // teachers.ts) y beneficios según corresponda.
 // ─────────────────────────────────────────────────────────────
 
-export type CourseArea = 'Corporativo' | 'Compliance' | 'Contratos';
+export type CourseArea = 'Corporativo' | 'Compliance' | 'Contratos' | 'Práctica Judicial';
 
 export interface ScheduleSession {
   date: string; // texto a mostrar, ej. "29 de julio"
@@ -45,6 +45,8 @@ export interface Course {
   schedule?: ScheduleSession[];
   contentModules?: string[];
   pricingTiers?: PricingTier[];
+  // Tarifas aplicables después de vencer la preventa (mismo formato que pricingTiers).
+  regularPricingTiers?: PricingTier[];
   presaleDeadline?: string; // ISO date
   externalSyllabusUrl?: string;
   externalRegistrationUrl?: string;
@@ -60,40 +62,85 @@ export interface Course {
 
 export const courses: Course[] = [
   {
+    id: 'plataformas-judiciales-registrales',
+    name: 'I Curso Práctico de Plataformas Judiciales & Registrales',
+    area: 'Práctica Judicial',
+    summary: 'Aprende a moverte con seguridad en SINOE, CEJ, SUNARP, Visor BGR, SPIJ y el Tribunal Constitucional, con un enfoque 100% práctico.',
+    description:
+      'Fortalece tu perfil profesional con un curso práctico impartido por especialistas con experiencia en litigación, gestión registral e investigación jurídica. Aprenderás a moverte con seguridad en las plataformas digitales que todo abogado usa desde su primer día: SINOE, CEJ, SUNARP, Visor BGR, SPIJ y el Tribunal Constitucional, con un enfoque 100% práctico y aplicado a casos reales.',
+    startDate: '2026-09-25',
+    duration: '2 días',
+    modality: 'Online en vivo',
+    sessions: 3,
+    price: 40,
+    currency: 'PEN',
+    featured: true,
+    level: 'Introductorio',
+    benefits: [
+      'Acceso a las 3 sesiones en vivo y sus grabaciones',
+      'Material autorizado por los ponentes',
+      'Bibliografía complementaria',
+      'Constancia de participación',
+    ],
+    schedule: [
+      {
+        date: '25 de setiembre',
+        time: '6:00 p.m. – 8:00 p.m.',
+        topic: '¿Cómo presentar una demanda? + Taller: Lectura de Expediente (SINOE y CEJ)',
+        speaker: 'Fiorella Luna',
+      },
+      {
+        date: '26 de setiembre',
+        time: '6:00 p.m. – 7:50 p.m.',
+        topic: 'SUNARP, Visor BGR, Conoce Aquí y Síguelo+ / Taller: ¿Cómo leer una partida?',
+        speaker: 'Manuel Monroe',
+      },
+      {
+        date: '26 de setiembre',
+        time: '8:00 p.m. – 9:30 p.m.',
+        topic: 'Investigación Jurídica: SPIJ y Tribunal Constitucional / Taller: Análisis de un caso penal usando SPIJ y TC',
+        speaker: 'César Escarcena',
+      },
+    ],
+    pricingTiers: [
+      { label: 'Estudiantes', price: 40 },
+      { label: 'Público general', price: 60 },
+      { label: 'Corporativo', price: 55, note: 'desde 3 participantes' },
+    ],
+    regularPricingTiers: [
+      { label: 'Estudiantes', price: 50 },
+      { label: 'Público general', price: 70 },
+      { label: 'Corporativo', price: 65, note: 'desde 3 participantes' },
+    ],
+    presaleDeadline: '2026-09-15',
+    externalSyllabusUrl: 'https://canva.link/m30u7hiim8vqj97',
+    contactPhones: ['+51 956 484 193'],
+  },
+  {
     id: 'compliance-360',
     name: 'Compliance 360°: Gestión Antisoborno, SPLAFT y Protección de Datos',
     area: 'Compliance',
-    summary: 'Curso práctico dictado por especialistas: sistemas de gestión antisoborno, SPLAFT y protección de datos personales.',
+    summary: 'Curso práctico grabado: sistemas de gestión antisoborno, SPLAFT y protección de datos personales.',
     description:
-      'Fortalece tu perfil profesional con un curso práctico dictado por especialistas con amplia experiencia en Compliance, gestión de riesgos y derecho corporativo. Tres sesiones en vivo sobre sistemas de gestión de compliance, prevención de lavado de activos (SPLAFT) y protección de datos personales.',
+      'Fortalece tu perfil profesional con un curso práctico grabado, dictado por especialistas con amplia experiencia en Compliance, gestión de riesgos y derecho corporativo. Tres módulos sobre sistemas de gestión de compliance, prevención de lavado de activos (SPLAFT) y protección de datos personales.',
     startDate: '2026-08-27',
-    duration: '3 días',
-    modality: 'Online en vivo',
+    duration: '3 módulos',
+    modality: 'Grabado',
     sessions: 3,
-    price: 50,
+    price: 45,
     currency: 'PEN',
-    featured: true,
+    featured: false,
     level: 'Intermedio',
-    benefits: [
-      'Clases grabadas',
-      'Materiales y bibliografía',
-      'Constancia de participación',
-      'Acceso a las 3 sesiones en vivo',
+    isRecorded: true,
+    benefits: ['Clases 100% prácticas', 'Material de estudio', 'Clases grabadas'],
+    contentModules: [
+      'Sistemas de Gestión de Compliance — David Caballero',
+      'SPLAFT (Prevención de Lavado de Activos) — Carlos Hermoza',
+      'Protección de Datos Personales — Jeampier Aquino',
     ],
-    schedule: [
-      { date: '27 de agosto', time: '7:00 p.m. – 9:00 p.m.', topic: 'Sistemas de Gestión de Compliance', speaker: 'David Caballero' },
-      { date: '28 de agosto', time: '7:00 p.m. – 9:00 p.m.', topic: 'SPLAFT', speaker: 'Carlos Hermoza' },
-      { date: '29 de agosto', time: '10:00 a.m. – 12:00 p.m.', topic: 'Protección de Datos Personales', speaker: 'Jeampier Aquino' },
-    ],
-    pricingTiers: [
-      { label: 'Estudiantes', price: 50 },
-      { label: 'Público general', price: 70 },
-      { label: 'Corporativo', price: 65, note: 'por persona, desde 3 participantes' },
-    ],
-    presaleDeadline: '2026-08-16',
-    externalSyllabusUrl: 'https://canva.link/c6x8oa9lft07o3r',
-    externalRegistrationUrl: 'https://forms.gle/vjPHsWVmPTjMFKTz8',
     contactPhones: ['+51 956 484 193'],
+    whatsappOverride: '51956484193',
+    certificateAddOnPrice: 5,
   },
   {
     id: 'rol-estrategico-abogado-corporativo',
@@ -177,4 +224,4 @@ export const courses: Course[] = [
   },
 ];
 
-export const courseAreas: CourseArea[] = ['Corporativo', 'Compliance', 'Contratos'];
+export const courseAreas: CourseArea[] = ['Corporativo', 'Compliance', 'Contratos', 'Práctica Judicial'];

@@ -202,6 +202,22 @@ export function CourseModal({ course, onClose }: CourseModalProps) {
                 </div>
               )}
 
+              {course.regularPricingTiers && (
+                <div className="mt-4">
+                  <p className="text-[11px] text-ink-muted">
+                    Precio regular después de la preventa{course.presaleDeadline ? ` (desde el ${formatDate(course.presaleDeadline)})` : ''}:
+                  </p>
+                  <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+                    {course.regularPricingTiers.map((tier) => (
+                      <li key={tier.label} className="text-xs text-ink-muted">
+                        <span className="font-semibold text-ink">{tier.label}:</span> {formatCurrency(tier.price)}
+                        {tier.note ? ` (${tier.note})` : ''}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
               {course.externalSyllabusUrl && (
                 <a
                   href={course.externalSyllabusUrl}
