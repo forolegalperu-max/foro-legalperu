@@ -23,6 +23,7 @@ export const brand = {
 export const navLinks = [
   { label: 'Inicio', href: '#inicio' },
   { label: 'Cursos', href: '#cursos' },
+  { label: 'Biblioteca', href: '#biblioteca' },
   { label: 'Preguntas frecuentes', href: '#faq' },
 ];
 

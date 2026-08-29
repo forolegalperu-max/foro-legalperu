@@ -5,6 +5,7 @@ import { ScrollProgress } from './components/layout/ScrollProgress';
 import { CustomCursor } from './components/layout/CustomCursor';
 import { Hero } from './components/sections/Hero';
 import { CoursesSection } from './components/sections/CoursesSection';
+import { Library } from './components/sections/Library';
 import { Benefits } from './components/sections/Benefits';
 import { Stats } from './components/sections/Stats';
 import { FAQ } from './components/sections/FAQ';
@@ -25,6 +26,7 @@ function App() {
       <main id="main-content">
         <Hero />
         <CoursesSection />
+        <Library />
         <Benefits />
         <Stats />
         <FAQ />
