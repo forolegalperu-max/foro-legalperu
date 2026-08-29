@@ -30,4 +30,11 @@ export const libraryBooks: LibraryBook[] = [
     description: 'Guía práctica para afrontar tu primer proceso judicial en materia de familia.',
     fileUrl: 'https://drive.google.com/file/d/1U85BdfOjH5z9X01xfNL-ULwvwRmMDUTz/view?usp=share_link',
   },
+  {
+    id: 'guias-practicas-materia-penal',
+    title: 'Guías prácticas en materia penal',
+    category: 'Penal',
+    description: 'Colección de guías prácticas para la actuación en procesos penales.',
+    fileUrl: 'https://drive.google.com/drive/folders/1hVETcZ2_qeidkZr77l38U3qCMLabEidu?usp=share_link',
+  },
 ];
