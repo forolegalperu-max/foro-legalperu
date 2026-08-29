@@ -1,10 +1,15 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ArrowRight, ArrowUpRight, Sparkles } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Sparkles, ZoomIn } from 'lucide-react';
 import { brand } from '../../data/site';
 import { stats } from '../../data/stats';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
+import { Lightbox } from '../ui/Lightbox';
 import proximoCursoImg from '../../assets/curso-plataformas-judiciales.jpg';
+import temarioImg from '../../assets/temario-plataformas-judiciales.jpg';
+
+const cursoAlt = 'Próximo curso: I Curso Práctico de Plataformas Judiciales & Registrales, 25 y 26 de setiembre, modalidad virtual';
+const temarioAlt = 'Temario del I Curso Práctico de Plataformas Judiciales & Registrales';
 
 const studentsStat = stats.find((s) => s.id === 'students')!;
 const teachersStat = stats.find((s) => s.id === 'teachers')!;
@@ -16,6 +21,7 @@ function scrollTo(id: string) {
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
 
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -160,13 +166,22 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative rounded-3xl overflow-hidden shadow-soft"
+            className="group relative rounded-3xl overflow-hidden shadow-soft cursor-zoom-in"
+            onClick={() => setLightbox({ src: proximoCursoImg, alt: cursoAlt })}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') setLightbox({ src: proximoCursoImg, alt: cursoAlt });
+            }}
+            aria-label="Ampliar imagen del curso"
+            data-cursor-hover
           >
-            <img
-              src={proximoCursoImg}
-              alt="Próximo curso: I Curso Práctico de Plataformas Judiciales & Registrales, 25 y 26 de setiembre, modalidad virtual"
-              className="block w-full h-auto"
-            />
+            <img src={proximoCursoImg} alt={cursoAlt} className="block w-full h-auto" />
+            <div className="absolute inset-0 flex items-center justify-center bg-ink/0 group-hover:bg-ink/30 transition-colors duration-300">
+              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-cream/90 text-ink opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300">
+                <ZoomIn size={18} />
+              </span>
+            </div>
           </motion.div>
 
           {/* floating badge 1 */}
@@ -192,8 +207,29 @@ export function Hero() {
             <p className="text-[11px] text-cream/80">Próximo inicio</p>
             <p className="font-display text-sm font-semibold">25 de setiembre</p>
           </motion.div>
+
+          {/* temario thumbnail */}
+          <motion.button
+            type="button"
+            onClick={() => setLightbox({ src: temarioImg, alt: temarioAlt })}
+            data-cursor-hover
+            initial={{ opacity: 0, y: 10, rotate: -6 }}
+            animate={{ opacity: 1, y: 0, rotate: -6 }}
+            whileHover={{ rotate: 0, scale: 1.04 }}
+            transition={{ duration: 0.7, delay: 0.95 }}
+            className="group absolute bottom-20 -left-10 hidden sm:block w-24 overflow-hidden rounded-xl bg-paper p-1 shadow-card"
+          >
+            <img src={temarioImg} alt={temarioAlt} className="block w-full h-auto rounded-lg" />
+            <span className="absolute inset-0 flex items-center justify-center rounded-xl bg-ink/0 group-hover:bg-ink/40 transition-colors duration-300">
+              <span className="text-[10px] font-semibold text-cream opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                Ver temario
+              </span>
+            </span>
+          </motion.button>
         </div>
       </div>
+
+      <Lightbox src={lightbox?.src ?? null} alt={lightbox?.alt ?? ''} onClose={() => setLightbox(null)} />
     </section>
   );
 }
