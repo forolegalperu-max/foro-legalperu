@@ -31,7 +31,7 @@ export const faqItems: FaqItem[] = [
     id: 'pagos',
     question: '¿Qué formas de pago aceptan?',
     answer:
-      'Solo aceptamos pagos por Yape o Plin, al número +51 956 484 193.',
+      'Solo aceptamos pagos por Yape o Plin, al número +51 946 765 063.',
   },
   {
     id: 'requisitos',

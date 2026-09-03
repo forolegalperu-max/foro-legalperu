@@ -114,7 +114,7 @@ export const courses: Course[] = [
     ],
     presaleDeadline: '2026-09-15',
     externalSyllabusUrl: 'https://canva.link/m30u7hiim8vqj97',
-    contactPhones: ['+51 956 484 193'],
+    contactPhones: ['+51 946 765 063'],
   },
   {
     id: 'compliance-360',
@@ -138,8 +138,8 @@ export const courses: Course[] = [
       'SPLAFT (Prevención de Lavado de Activos) — Carlos Hermoza',
       'Protección de Datos Personales — Jeampier Aquino',
     ],
-    contactPhones: ['+51 956 484 193'],
-    whatsappOverride: '51956484193',
+    contactPhones: ['+51 946 765 063'],
+    whatsappOverride: '51946765063',
     certificateAddOnPrice: 5,
   },
   {
@@ -165,8 +165,8 @@ export const courses: Course[] = [
       'Contratos Empresariales — Doris Álvaro',
       'Compliance Corporativo — David Caballero',
     ],
-    contactPhones: ['+51 956 484 193'],
-    whatsappOverride: '51956484193',
+    contactPhones: ['+51 946 765 063'],
+    whatsappOverride: '51946765063',
     certificateAddOnPrice: 5,
   },
   {
@@ -191,8 +191,8 @@ export const courses: Course[] = [
       'Contrato de arrendamiento con cláusula de allanamiento a futuro (desalojo) y contrato de locación de servicios',
       'Contrato de mutuo (préstamo de dinero) y cláusulas estratégicas aplicables a todo contrato',
     ],
-    contactPhones: ['+51 956 484 193'],
-    whatsappOverride: '51956484193',
+    contactPhones: ['+51 946 765 063'],
+    whatsappOverride: '51946765063',
     certificateAddOnPrice: 5,
   },
   {
@@ -218,8 +218,8 @@ export const courses: Course[] = [
       'Contratación laboral',
       'Prevención de contingencias legales en materia laboral',
     ],
-    contactPhones: ['+51 956 484 193'],
-    whatsappOverride: '51956484193',
+    contactPhones: ['+51 946 765 063'],
+    whatsappOverride: '51946765063',
     certificateAddOnPrice: 5,
   },
 ];
