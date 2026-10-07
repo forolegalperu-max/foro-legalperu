@@ -49,7 +49,6 @@ export interface Course {
   regularPricingTiers?: PricingTier[];
   presaleDeadline?: string; // ISO date
   externalSyllabusUrl?: string;
-  externalRegistrationUrl?: string;
   contactPhones?: string[];
   whatsappOverride?: string;
   // true = curso grabado/asíncrono de acceso inmediato (sin fecha de inicio en vivo).
@@ -107,7 +106,6 @@ export const courses: Course[] = [
       { label: 'Corporativo', price: 65, note: 'por persona, desde 3 participantes' },
     ],
     externalSyllabusUrl: 'https://canva.link/0n1jnxcnp69nxuq',
-    externalRegistrationUrl: 'https://forms.gle/cH1ktWcNmaQS6D9t9',
     contactPhones: ['+51 946 765 063'],
   },
   {

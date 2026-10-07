@@ -255,13 +255,13 @@ export function CourseModal({ course, onClose }: CourseModalProps) {
                   {hasSpots && <p className="text-xs text-cream/50 mt-0.5">{course.spotsLeft} cupos disponibles</p>}
                 </div>
                 <a
-                  href={course.externalRegistrationUrl ?? whatsappHref}
+                  href={whatsappHref}
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cursor-hover
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-coral text-cream text-sm font-semibold px-6 py-3.5 hover:bg-coral-dark transition-colors"
                 >
-                  {course.externalRegistrationUrl ? 'Inscribirme' : 'Reservar mi cupo'}
+                  Inscribirme
                 </a>
               </div>
             </div>
