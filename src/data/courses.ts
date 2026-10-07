@@ -4,7 +4,7 @@
 // teachers.ts) y beneficios según corresponda.
 // ─────────────────────────────────────────────────────────────
 
-export type CourseArea = 'Corporativo' | 'Compliance' | 'Contratos' | 'Práctica Judicial';
+export type CourseArea = 'Corporativo' | 'Compliance' | 'Contratos' | 'Práctica Judicial' | 'Penal';
 
 export interface ScheduleSession {
   date: string; // texto a mostrar, ej. "29 de julio"
@@ -62,59 +62,79 @@ export interface Course {
 
 export const courses: Course[] = [
   {
+    id: 'rol-estrategico-abogado-penalista',
+    name: 'I Curso Práctico: El Rol Estratégico del Abogado Penalista',
+    area: 'Penal',
+    summary: 'Conoce cómo piensa y litiga un abogado penalista en cada etapa del proceso: investigación preparatoria, etapa intermedia y juzgamiento.',
+    description:
+      '¿Quieres conocer cómo piensa y litiga un abogado penalista en cada etapa del proceso? Tres sesiones prácticas con abogados penalistas en ejercicio, recorriendo la investigación preparatoria, la etapa intermedia y el juzgamiento.',
+    startDate: '2026-10-14',
+    duration: '3 días',
+    modality: 'Online en vivo',
+    sessions: 3,
+    price: 50,
+    currency: 'PEN',
+    featured: true,
+    level: 'Intermedio',
+    benefits: [
+      'Acceso a las 3 sesiones en vivo y sus grabaciones',
+      'Materiales y bibliografía',
+      'Constancia de participación',
+    ],
+    schedule: [
+      {
+        date: '14 de octubre',
+        time: '7:00 p.m. – 10:00 p.m.',
+        topic: '"Los primeros 120 días: cómo se gana (o se pierde) el caso antes de la acusación" (La Investigación Preparatoria)',
+        speaker: 'Dan Torres & César Escarcena',
+      },
+      {
+        date: '15 de octubre',
+        time: '7:00 p.m. – 8:30 p.m.',
+        topic: '"La audiencia que nadie te enseñó a litigar: el filtro que decide si hay juicio" (La Etapa Intermedia)',
+        speaker: 'Alex Montes',
+      },
+      {
+        date: '16 de octubre',
+        time: '7:00 p.m. – 8:30 p.m.',
+        topic: '"Cara a cara con el Juez: litigación oral para ganar en la sala de audiencias" (El Juzgamiento)',
+        speaker: 'Benji Espinoza',
+      },
+    ],
+    pricingTiers: [
+      { label: 'Estudiantes', price: 50 },
+      { label: 'Público general', price: 70 },
+      { label: 'Corporativo', price: 65, note: 'por persona, desde 3 participantes' },
+    ],
+    externalSyllabusUrl: 'https://canva.link/0n1jnxcnp69nxuq',
+    externalRegistrationUrl: 'https://forms.gle/cH1ktWcNmaQS6D9t9',
+    contactPhones: ['+51 946 765 063'],
+  },
+  {
     id: 'plataformas-judiciales-registrales',
     name: 'I Curso Práctico de Plataformas Judiciales & Registrales',
     area: 'Práctica Judicial',
     summary: 'Aprende a moverte con seguridad en SINOE, CEJ, SUNARP, Visor BGR, SPIJ y el Tribunal Constitucional, con un enfoque 100% práctico.',
     description:
-      'Fortalece tu perfil profesional con un curso práctico impartido por especialistas con experiencia en litigación, gestión registral e investigación jurídica. Aprenderás a moverte con seguridad en las plataformas digitales que todo abogado usa desde su primer día: SINOE, CEJ, SUNARP, Visor BGR, SPIJ y el Tribunal Constitucional, con un enfoque 100% práctico y aplicado a casos reales.',
+      'Curso práctico grabado, impartido por especialistas con experiencia en litigación, gestión registral e investigación jurídica. Aprenderás a moverte con seguridad en las plataformas digitales que todo abogado usa desde su primer día: SINOE, CEJ, SUNARP, Visor BGR, SPIJ y el Tribunal Constitucional, con un enfoque 100% práctico y aplicado a casos reales.',
     startDate: '2026-09-25',
-    duration: '2 días',
-    modality: 'Online en vivo',
+    duration: '3 módulos',
+    modality: 'Grabado',
     sessions: 3,
-    price: 40,
+    price: 20,
     currency: 'PEN',
-    featured: true,
+    featured: false,
     level: 'Introductorio',
-    benefits: [
-      'Acceso a las 3 sesiones en vivo y sus grabaciones',
-      'Material autorizado por los ponentes',
-      'Bibliografía complementaria',
-      'Constancia de participación',
+    isRecorded: true,
+    benefits: ['Clases 100% prácticas', 'Material de estudio', 'Clases grabadas'],
+    contentModules: [
+      '¿Cómo presentar una demanda? + Taller: Lectura de Expediente (SINOE y CEJ) — Fiorella Luna',
+      'SUNARP, Visor BGR, Conoce Aquí y Síguelo+ / Taller: ¿Cómo leer una partida? — Manuel Monroe',
+      'Investigación Jurídica: SPIJ y Tribunal Constitucional / Taller: Análisis de un caso penal usando SPIJ y TC — César Escarcena',
     ],
-    schedule: [
-      {
-        date: '25 de setiembre',
-        time: '6:00 p.m. – 8:00 p.m.',
-        topic: '¿Cómo presentar una demanda? + Taller: Lectura de Expediente (SINOE y CEJ)',
-        speaker: 'Fiorella Luna',
-      },
-      {
-        date: '26 de setiembre',
-        time: '6:00 p.m. – 7:50 p.m.',
-        topic: 'SUNARP, Visor BGR, Conoce Aquí y Síguelo+ / Taller: ¿Cómo leer una partida?',
-        speaker: 'Manuel Monroe',
-      },
-      {
-        date: '26 de setiembre',
-        time: '8:00 p.m. – 9:30 p.m.',
-        topic: 'Investigación Jurídica: SPIJ y Tribunal Constitucional / Taller: Análisis de un caso penal usando SPIJ y TC',
-        speaker: 'César Escarcena',
-      },
-    ],
-    pricingTiers: [
-      { label: 'Estudiantes', price: 40 },
-      { label: 'Público general', price: 60 },
-      { label: 'Corporativo', price: 55, note: 'desde 3 participantes' },
-    ],
-    regularPricingTiers: [
-      { label: 'Estudiantes', price: 50 },
-      { label: 'Público general', price: 70 },
-      { label: 'Corporativo', price: 65, note: 'desde 3 participantes' },
-    ],
-    presaleDeadline: '2026-09-15',
-    externalSyllabusUrl: 'https://canva.link/m30u7hiim8vqj97',
     contactPhones: ['+51 946 765 063'],
+    whatsappOverride: '51946765063',
+    certificateAddOnPrice: 5,
   },
   {
     id: 'compliance-360',
@@ -224,4 +244,4 @@ export const courses: Course[] = [
   },
 ];
 
-export const courseAreas: CourseArea[] = ['Corporativo', 'Compliance', 'Contratos', 'Práctica Judicial'];
+export const courseAreas: CourseArea[] = ['Corporativo', 'Compliance', 'Contratos', 'Práctica Judicial', 'Penal'];

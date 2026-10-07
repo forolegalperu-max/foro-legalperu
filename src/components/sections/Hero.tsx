@@ -5,11 +5,11 @@ import { brand } from '../../data/site';
 import { stats } from '../../data/stats';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 import { Lightbox } from '../ui/Lightbox';
-import proximoCursoImg from '../../assets/curso-plataformas-judiciales.jpg';
-import temarioImg from '../../assets/temario-plataformas-judiciales.jpg';
+import proximoCursoImg from '../../assets/curso-penalista.jpg';
+import temarioImg from '../../assets/temario-penalista.jpg';
 
-const cursoAlt = 'Próximo curso: I Curso Práctico de Plataformas Judiciales & Registrales, 25 y 26 de setiembre, modalidad virtual';
-const temarioAlt = 'Temario del I Curso Práctico de Plataformas Judiciales & Registrales';
+const cursoAlt = 'Próximo curso: I Curso Práctico: El Rol Estratégico del Abogado Penalista, del 14 al 16 de octubre, modalidad virtual';
+const temarioAlt = 'Temario del I Curso Práctico: El Rol Estratégico del Abogado Penalista';
 
 const studentsStat = stats.find((s) => s.id === 'students')!;
 const teachersStat = stats.find((s) => s.id === 'teachers')!;
@@ -224,7 +224,7 @@ export function Hero() {
             className="absolute -bottom-7 -right-6 rounded-2xl bg-coral text-cream shadow-card px-4 py-3 hidden sm:block"
           >
             <p className="text-[11px] text-cream/80">Próximo inicio</p>
-            <p className="font-display text-sm font-semibold">25 de setiembre</p>
+            <p className="font-display text-sm font-semibold">14 de octubre</p>
           </motion.div>
 
           {/* temario thumbnail */}
