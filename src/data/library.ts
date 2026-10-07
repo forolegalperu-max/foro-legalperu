@@ -37,4 +37,11 @@ export const libraryBooks: LibraryBook[] = [
     description: 'Colección de guías prácticas para la actuación en procesos penales.',
     fileUrl: 'https://drive.google.com/drive/folders/1hVETcZ2_qeidkZr77l38U3qCMLabEidu?usp=share_link',
   },
+  {
+    id: 'derecho-concursal',
+    title: 'Derecho Concursal',
+    category: 'Concursal',
+    description: 'Material de estudio sobre Derecho Concursal.',
+    fileUrl: 'https://drive.google.com/file/d/1Rk5og4cKQ-5g5MlKHtU8ERP5GP2qR7iI/view?usp=sharing',
+  },
 ];
