@@ -1,9 +1,11 @@
 import { useMemo, useState } from 'react';
-import { CalendarDays, ChevronDown, FileText, MessageCircle, MonitorPlay, Search } from 'lucide-react';
+import { CalendarDays, ChevronDown, MonitorPlay, Search } from 'lucide-react';
 import { courses, type Course } from '../../data/courses';
 import { formatCurrency, formatShortDate } from '../../lib/utils';
-import { courseFormHref, courseWhatsappHref } from '../../lib/whatsapp';
+import { courseWhatsappHref } from '../../lib/whatsapp';
 import { CourseCover } from '../ui/CourseCover';
+import { EnrollButtons } from '../ui/EnrollButtons';
+import { hasSyllabus, SyllabusModal } from '../ui/SyllabusModal';
 import { Reveal } from '../ui/Reveal';
 
 const enrollable = courses.filter((c) => !c.comingSoon);
@@ -15,38 +17,12 @@ const certificatePrice = recordedCourses.find((c) => c.certificateAddOnPrice)?.c
 // A partir de cuántos cursos grabados se muestra el buscador.
 const SEARCH_THRESHOLD = 6;
 
-// Botones pequeños: formulario (solo cursos en vivo) + WhatsApp.
-function EnrollButtons({ course }: { course: Course }) {
-  const base =
-    'inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-[11px] font-semibold transition-colors';
-  return (
-    <div className="flex flex-wrap gap-1.5">
-      {/* Los cursos grabados se inscriben solo por WhatsApp. */}
-      {!course.isRecorded && (
-        <a
-          href={courseFormHref(course)}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-cursor-hover
-          className={`${base} bg-ink text-cream hover:bg-coral`}
-        >
-          <FileText size={12} /> Formulario
-        </a>
-      )}
-      <a
-        href={courseWhatsappHref(course)}
-        target="_blank"
-        rel="noopener noreferrer"
-        data-cursor-hover
-        className={`${base} bg-coral text-cream hover:bg-coral-dark`}
-      >
-        <MessageCircle size={12} /> WhatsApp
-      </a>
-    </div>
-  );
+interface CardProps {
+  course: Course;
+  onSyllabus: (course: Course) => void;
 }
 
-function LiveCourse({ course }: { course: Course }) {
+function LiveCourse({ course, onSyllabus }: CardProps) {
   const lowestPrice = course.pricingTiers ? Math.min(...course.pricingTiers.map((t) => t.price)) : course.price;
 
   return (
@@ -99,14 +75,14 @@ function LiveCourse({ course }: { course: Course }) {
             {course.pricingTiers && <span className="mr-1 text-xs font-normal text-ink-muted">desde</span>}
             {formatCurrency(lowestPrice)}
           </span>
-          <EnrollButtons course={course} />
+          <EnrollButtons course={course} onSyllabus={hasSyllabus(course) ? () => onSyllabus(course) : undefined} />
         </div>
       </div>
     </article>
   );
 }
 
-function RecordedCourse({ course }: { course: Course }) {
+function RecordedCourse({ course, onSyllabus }: CardProps) {
   return (
     <article className="group flex h-full flex-col rounded-2xl bg-paper p-2.5 shadow-card ring-1 ring-ink/5 transition-transform duration-300 hover:-translate-y-1">
       <CourseCover course={course} tag="Grabado" className="aspect-[4/5] rounded-xl" />
@@ -119,7 +95,7 @@ function RecordedCourse({ course }: { course: Course }) {
               <span className="ml-1.5 text-[11px] text-ink-muted">+ {formatCurrency(course.certificateAddOnPrice)} constancia</span>
             )}
           </div>
-          <EnrollButtons course={course} />
+          <EnrollButtons course={course} onSyllabus={hasSyllabus(course) ? () => onSyllabus(course) : undefined} />
         </div>
       </div>
     </article>
@@ -128,6 +104,7 @@ function RecordedCourse({ course }: { course: Course }) {
 
 export function EnrollSection() {
   const [query, setQuery] = useState('');
+  const [syllabusCourse, setSyllabusCourse] = useState<Course | null>(null);
 
   const filteredRecorded = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -153,7 +130,7 @@ export function EnrollSection() {
             <div className={`grid gap-4 ${liveCourses.length > 1 ? 'lg:grid-cols-2' : ''}`}>
               {liveCourses.map((course) => (
                 <Reveal key={course.id}>
-                  <LiveCourse course={course} />
+                  <LiveCourse course={course} onSyllabus={setSyllabusCourse} />
                 </Reveal>
               ))}
             </div>
@@ -192,7 +169,7 @@ export function EnrollSection() {
               <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-4 xl:grid-cols-5">
                 {filteredRecorded.map((course) => (
                   <Reveal key={course.id} className="h-full" y={16}>
-                    <RecordedCourse course={course} />
+                    <RecordedCourse course={course} onSyllabus={setSyllabusCourse} />
                   </Reveal>
                 ))}
               </div>
@@ -202,6 +179,8 @@ export function EnrollSection() {
           </section>
         )}
       </div>
+
+      <SyllabusModal course={syllabusCourse} onClose={() => setSyllabusCourse(null)} />
     </section>
   );
 }

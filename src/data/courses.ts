@@ -5,6 +5,7 @@
 // ─────────────────────────────────────────────────────────────
 
 import penalistaCover from '../assets/curso-penalista.jpg';
+import penalistaTemario from '../assets/temario-penalista.jpg';
 import plataformasCover from '../assets/curso-plataformas-judiciales.jpg';
 import complianceCover from '../assets/curso-compliance-360.jpg';
 import corporativoCover from '../assets/curso-abogado-corporativo.jpeg';
@@ -64,6 +65,8 @@ export interface Course {
   certificateAddOnPrice?: number;
   // Formulario de inscripción propio de este curso. Si falta, se usa brand.formUrl (site.ts).
   formUrl?: string;
+  // Imagen del temario (se abre ampliada desde la ventana "Temario").
+  syllabusImage?: string;
   // Imagen de portada opcional (import desde src/assets). Si falta, se genera una portada con la marca.
   cover?: string;
   // true = solo muestra nombre y área, con una etiqueta "Próximamente" (sin precio, docente ni detalles).
@@ -79,6 +82,7 @@ export const courses: Course[] = [
     description:
       '¿Quieres conocer cómo piensa y litiga un abogado penalista en cada etapa del proceso? Tres sesiones prácticas con abogados penalistas en ejercicio, recorriendo la investigación preparatoria, la etapa intermedia y el juzgamiento.',
     cover: penalistaCover,
+    syllabusImage: penalistaTemario,
     startDate: '2026-10-14',
     duration: '3 días',
     modality: 'Online en vivo',
