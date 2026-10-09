@@ -42,7 +42,7 @@ export function Header() {
           mobileOpen
             ? 'bg-ink py-5'
             : scrolled
-              ? 'bg-cream/90 backdrop-blur-md shadow-[0_1px_0_0_rgba(18,19,23,0.08)] py-3'
+              ? 'bg-cream/95 shadow-[0_1px_0_0_rgba(18,19,23,0.08)] py-3'
               : 'bg-transparent py-5'
         }`}
       >

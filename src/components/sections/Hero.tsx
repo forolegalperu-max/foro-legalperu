@@ -47,10 +47,9 @@ export function Hero() {
       onMouseMove={handleMouseMove}
       className="relative overflow-hidden bg-cream pt-32 pb-20 md:pt-44 md:pb-28"
     >
-      {/* background texture */}
-      <div className="absolute inset-0 bg-noise pointer-events-none" />
-      <div className="absolute -top-40 -right-40 h-[520px] w-[520px] rounded-full bg-coral/10 blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 -left-32 h-[380px] w-[380px] rounded-full bg-navy/10 blur-3xl pointer-events-none" />
+      {/* Brillos de fondo: degradados radiales (más livianos que blur, sobre todo en Safari). */}
+      <div className="absolute -top-56 -right-56 h-[760px] w-[760px] rounded-full bg-[radial-gradient(closest-side,rgba(255,75,62,0.13),rgba(255,75,62,0))] pointer-events-none" />
+      <div className="absolute top-1/4 -left-52 h-[560px] w-[560px] rounded-full bg-[radial-gradient(closest-side,rgba(28,43,74,0.11),rgba(28,43,74,0))] pointer-events-none" />
 
       <div className="relative mx-auto max-w-7xl px-5 md:px-8 grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-14 items-center">
         {/* Text column */}

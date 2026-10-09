@@ -35,7 +35,7 @@ export function CourseCover({ course, tag, className = '' }: { course: Course; t
             <path d="M0 78 H100 M0 86 H100 M0 94 H100" />
           </svg>
           <Icon className="absolute right-[14%] top-[22%] h-[34%] w-auto text-cream/90" strokeWidth={1.4} />
-          <span className="absolute left-3 top-3 hidden items-center gap-1 sm:inline-flex rounded-full bg-cream/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-cream backdrop-blur-sm">
+          <span className="absolute left-3 top-3 hidden items-center gap-1 sm:inline-flex rounded-full bg-cream/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-cream">
             <Play size={9} fill="currentColor" /> {course.area}
           </span>
         </div>

@@ -8,7 +8,7 @@ const studentsStat = stats.find((s) => s.id === 'students')!;
 export function CTA() {
   return (
     <section id="cta-final" className="relative bg-ink py-24 md:py-32 overflow-hidden">
-      <div className="absolute -bottom-40 -left-40 h-[420px] w-[420px] rounded-full bg-coral/10 blur-3xl" />
+      <div className="absolute -bottom-56 -left-56 h-[620px] w-[620px] rounded-full bg-[radial-gradient(closest-side,rgba(255,75,62,0.14),rgba(255,75,62,0))] pointer-events-none" />
       <div className="relative mx-auto max-w-2xl px-5 md:px-8 text-center">
         <Reveal>
           <span className="text-xs font-semibold uppercase tracking-wide text-navy-light">Empieza hoy</span>

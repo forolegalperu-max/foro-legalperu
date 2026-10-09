@@ -38,7 +38,7 @@ export function CourseModal({ course, onClose }: CourseModalProps) {
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="absolute inset-0 bg-ink/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-ink/60"
             onClick={onClose}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -55,7 +55,7 @@ export function CourseModal({ course, onClose }: CourseModalProps) {
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="relative z-10 w-full sm:max-w-2xl max-h-[92vh] overflow-y-auto rounded-t-3xl sm:rounded-3xl bg-paper shadow-soft"
           >
-            <div className="sticky top-0 flex items-center justify-between bg-paper/95 backdrop-blur px-6 sm:px-8 py-5 border-b border-ink/8">
+            <div className="sticky top-0 flex items-center justify-between bg-paper/95 px-6 sm:px-8 py-5 border-b border-ink/8">
               <span className="inline-flex items-center rounded-full bg-navy/10 text-navy text-[11px] font-semibold uppercase tracking-wide px-3 py-1">
                 {course.area}
               </span>

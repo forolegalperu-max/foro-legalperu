@@ -16,21 +16,24 @@ const certificatePrice = recordedCourses.find((c) => c.certificateAddOnPrice)?.c
 // A partir de cuántos cursos grabados se muestra el buscador.
 const SEARCH_THRESHOLD = 6;
 
-// Par de botones pequeños: formulario + WhatsApp.
+// Botones pequeños: formulario (solo cursos en vivo) + WhatsApp.
 function EnrollButtons({ course }: { course: Course }) {
   const base =
     'inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-[11px] font-semibold transition-colors';
   return (
     <div className="flex flex-wrap gap-1.5">
-      <a
-        href={courseFormHref(course)}
-        target="_blank"
-        rel="noopener noreferrer"
-        data-cursor-hover
-        className={`${base} bg-ink text-cream hover:bg-coral`}
-      >
-        <FileText size={12} /> Formulario
-      </a>
+      {/* Los cursos grabados se inscriben solo por WhatsApp. */}
+      {!course.isRecorded && (
+        <a
+          href={courseFormHref(course)}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-cursor-hover
+          className={`${base} bg-ink text-cream hover:bg-coral`}
+        >
+          <FileText size={12} /> Formulario
+        </a>
+      )}
       <a
         href={courseWhatsappHref(course)}
         target="_blank"
