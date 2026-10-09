@@ -8,6 +8,8 @@ import penalistaCover from '../assets/curso-penalista.jpg';
 import plataformasCover from '../assets/curso-plataformas-judiciales.jpg';
 import complianceCover from '../assets/curso-compliance-360.jpg';
 import corporativoCover from '../assets/curso-abogado-corporativo.jpeg';
+import contratosCover from '../assets/curso-redaccion-contratos.jpg';
+import empresarialCover from '../assets/curso-derecho-empresarial.jpg';
 
 export type CourseArea = 'Corporativo' | 'Compliance' | 'Contratos' | 'Práctica Judicial' | 'Penal';
 
@@ -202,6 +204,7 @@ export const courses: Course[] = [
   },
   {
     id: 'redaccion-contratos-tipicos',
+    cover: contratosCover,
     name: 'Curso Práctico en Redacción de Contratos Típicos',
     area: 'Contratos',
     summary: 'Aprende a redactar contratos de forma práctica, segura y estratégica: compraventa, arrendamiento, locación de servicios y mutuo.',
@@ -228,6 +231,7 @@ export const courses: Course[] = [
   },
   {
     id: 'derecho-empresarial-gestion-legal',
+    cover: empresarialCover,
     name: 'Curso Práctico en Derecho Empresarial & Gestión Legal de Negocios',
     area: 'Corporativo',
     summary: 'Cómo crear, formalizar y proteger un negocio desde el ámbito legal: constitución de empresas, marcas, contratación laboral y prevención de contingencias.',
