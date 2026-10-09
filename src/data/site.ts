@@ -30,10 +30,9 @@ export const navLinks = [
 ];
 
 export const socialLinks = [
-  { label: 'Instagram', href: 'https://instagram.com/forolegal.pe' },
+  { label: 'Instagram', href: 'https://www.instagram.com/forolegalperu' },
   { label: 'LinkedIn', href: 'https://linkedin.com/company/foro-legal' },
-  { label: 'TikTok', href: 'https://tiktok.com/@forolegal' },
-  { label: 'YouTube', href: 'https://youtube.com/@forolegal' },
+  { label: 'WhatsApp', href: brand.whatsappLink },
 ];
 
 export const missionVisionValues = {

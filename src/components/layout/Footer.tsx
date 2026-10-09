@@ -1,7 +1,9 @@
 import { Mail, MessageCircle } from 'lucide-react';
-import { brand, navLinks } from '../../data/site';
+import { brand, navLinks, socialLinks } from '../../data/site';
 import { Logo } from './Logo';
-import { InstagramIcon, LinkedInIcon, YoutubeIcon } from '../ui/SocialIcons';
+import { InstagramIcon, LinkedInIcon } from '../ui/SocialIcons';
+
+const socialHref = (label: string) => socialLinks.find((l) => l.label === label)?.href ?? '#';
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -15,7 +17,7 @@ export function Footer() {
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-cream/60">{brand.description}</p>
             <div className="mt-6 flex items-center gap-3">
               <a
-                href="https://instagram.com/forolegal.pe"
+                href={socialHref('Instagram')}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-cursor-hover
@@ -25,7 +27,7 @@ export function Footer() {
                 <InstagramIcon size={17} />
               </a>
               <a
-                href="https://linkedin.com/company/foro-legal"
+                href={socialHref('LinkedIn')}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-cursor-hover
@@ -35,14 +37,14 @@ export function Footer() {
                 <LinkedInIcon size={17} />
               </a>
               <a
-                href="https://youtube.com/@forolegal"
+                href={socialHref('WhatsApp')}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-cursor-hover
-                aria-label="YouTube"
+                aria-label="WhatsApp"
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/15 hover:bg-coral hover:border-coral transition-colors"
               >
-                <YoutubeIcon size={17} />
+                <MessageCircle size={17} />
               </a>
             </div>
           </div>
