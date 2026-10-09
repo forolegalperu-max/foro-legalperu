@@ -1,9 +1,6 @@
 import { MessageCircle } from 'lucide-react';
 import { brand } from '../../data/site';
-import { stats } from '../../data/stats';
 import { Reveal } from '../ui/Reveal';
-
-const studentsStat = stats.find((s) => s.id === 'students')!;
 
 export function CTA() {
   return (
@@ -36,8 +33,6 @@ export function CTA() {
             <span>{brand.city}, {brand.country}</span>
             <span className="h-1 w-1 rounded-full bg-cream/30" />
             <span>Desde {brand.foundedYear}</span>
-            <span className="h-1 w-1 rounded-full bg-cream/30" />
-            <span>+{studentsStat.value.toLocaleString('es-PE')} estudiantes</span>
           </div>
         </Reveal>
       </div>

@@ -7,7 +7,6 @@ import { Hero } from './components/sections/Hero';
 import { EnrollSection } from './components/sections/EnrollSection';
 import { Library } from './components/sections/Library';
 import { Benefits } from './components/sections/Benefits';
-import { Stats } from './components/sections/Stats';
 import { FAQ } from './components/sections/FAQ';
 import { CTA } from './components/sections/CTA';
 
@@ -28,7 +27,6 @@ function App() {
         <EnrollSection />
         <Library />
         <Benefits />
-        <Stats />
         <FAQ />
         <CTA />
       </main>

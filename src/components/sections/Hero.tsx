@@ -2,7 +2,6 @@ import { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, ArrowUpRight, Sparkles, ZoomIn } from 'lucide-react';
 import { brand } from '../../data/site';
-import { stats } from '../../data/stats';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 import { Lightbox } from '../ui/Lightbox';
 import proximoCursoImg from '../../assets/curso-penalista.jpg';
@@ -10,9 +9,6 @@ import temarioImg from '../../assets/temario-penalista.jpg';
 
 const cursoAlt = 'Próximo curso: I Curso Práctico: El Rol Estratégico del Abogado Penalista, del 14 al 16 de octubre, modalidad virtual';
 const temarioAlt = 'Temario del I Curso Práctico: El Rol Estratégico del Abogado Penalista';
-
-const studentsStat = stats.find((s) => s.id === 'students')!;
-const teachersStat = stats.find((s) => s.id === 'teachers')!;
 
 function scrollTo(id: string) {
   document.querySelector(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -127,34 +123,6 @@ export function Hero() {
               Explorar cursos
               <ArrowUpRight size={17} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </button>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.5 }}
-            className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4 text-ink pr-16 sm:pr-0"
-          >
-            <div>
-              <p className="font-display text-2xl font-semibold">
-                {studentsStat.value.toLocaleString('es-PE')}
-                {studentsStat.suffix}
-              </p>
-              <p className="text-xs text-ink-muted mt-0.5">{studentsStat.label}</p>
-            </div>
-            <div className="h-8 w-px bg-ink/10" />
-            <div>
-              <p className="font-display text-2xl font-semibold">4.8/5</p>
-              <p className="text-xs text-ink-muted mt-0.5">satisfacción promedio</p>
-            </div>
-            <div className="h-8 w-px bg-ink/10" />
-            <div>
-              <p className="font-display text-2xl font-semibold">
-                {teachersStat.value.toLocaleString('es-PE')}
-                {teachersStat.suffix}
-              </p>
-              <p className="text-xs text-ink-muted mt-0.5">{teachersStat.label}</p>
-            </div>
           </motion.div>
         </div>
 

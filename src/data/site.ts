@@ -12,7 +12,7 @@ export const brand = {
     'Cursos, talleres y programas de formación jurídica práctica para estudiantes de Derecho, egresados y abogados que quieren destacar en el ejercicio profesional.',
   city: 'Lima',
   country: 'Perú',
-  foundedYear: 2019,
+  foundedYear: 2026,
   email: 'forolegalperu@gmail.com',
   // Todo contacto general (WhatsApp, botón flotante, footer) redirige aquí.
   whatsappLink: 'https://wa.link/8r62e1',
