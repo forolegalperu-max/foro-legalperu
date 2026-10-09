@@ -4,7 +4,6 @@ import { ArrowRight, ArrowUpRight, Sparkles, ZoomIn } from 'lucide-react';
 import { brand } from '../../data/site';
 import { stats } from '../../data/stats';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
-import { ENROLL_HASH } from '../../lib/useRoute';
 import { Lightbox } from '../ui/Lightbox';
 import proximoCursoImg from '../../assets/curso-penalista.jpg';
 import temarioImg from '../../assets/temario-penalista.jpg';
@@ -112,14 +111,14 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.32 }}
             className="mt-9 flex flex-wrap items-center gap-4"
           >
-            <a
-              href={ENROLL_HASH}
+            <button
+              onClick={() => scrollTo('#cursos')}
               data-cursor-hover
               className="group inline-flex items-center gap-2 rounded-full bg-coral text-cream text-sm font-semibold px-6 py-3.5 shadow-[0_10px_30px_-8px_rgba(255,75,62,0.55)] transition-transform hover:-translate-y-0.5"
             >
               Inscríbete ahora
               <ArrowRight size={17} className="transition-transform group-hover:translate-x-1" />
-            </a>
+            </button>
             <button
               onClick={() => scrollTo('#cursos')}
               data-cursor-hover

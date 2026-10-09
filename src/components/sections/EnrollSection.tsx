@@ -1,8 +1,7 @@
 import { useMemo, useState } from 'react';
-import { ArrowLeft, CalendarDays, ChevronDown, FileText, MessageCircle, MonitorPlay, Search } from 'lucide-react';
+import { CalendarDays, ChevronDown, FileText, MessageCircle, MonitorPlay, Search } from 'lucide-react';
 import { courses, type Course } from '../../data/courses';
 import { formatCurrency, formatShortDate } from '../../lib/utils';
-import { HOME_HASH } from '../../lib/useRoute';
 import { courseFormHref, courseWhatsappHref } from '../../lib/whatsapp';
 import { CourseCover } from '../ui/CourseCover';
 import { Reveal } from '../ui/Reveal';
@@ -127,7 +126,7 @@ function RecordedCourse({ course }: { course: Course }) {
   );
 }
 
-export function EnrollPage() {
+export function EnrollSection() {
   const [query, setQuery] = useState('');
 
   const filteredRecorded = useMemo(() => {
@@ -136,28 +135,21 @@ export function EnrollPage() {
   }, [query]);
 
   return (
-    <div className="bg-cream pb-20 pt-24 md:pt-28">
+    <section id="cursos" className="relative bg-cream py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <a
-          href={HOME_HASH}
-          data-cursor-hover
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink-muted transition-colors hover:text-coral"
-        >
-          <ArrowLeft size={16} /> Volver al inicio
-        </a>
-
-        <Reveal className="mt-4 max-w-2xl">
-          <h1 className="text-4xl font-semibold text-ink text-balance md:text-5xl">Inscríbete aquí</h1>
-          <p className="mt-3 text-base leading-relaxed text-ink-muted">
+        <Reveal className="max-w-2xl">
+          <span className="text-xs font-semibold uppercase tracking-wide text-navy">Nuestros cursos</span>
+          <h2 className="mt-3 text-4xl font-semibold text-ink text-balance md:text-5xl">Inscríbete aquí</h2>
+          <p className="mt-4 text-lg leading-relaxed text-ink-muted">
             Elige tu curso y te llevamos a WhatsApp con el mensaje de inscripción ya escrito.
           </p>
         </Reveal>
 
         {liveCourses.length > 0 && (
-          <section className="mt-10" aria-labelledby="enroll-live-title">
-            <h2 id="enroll-live-title" className="mb-4 text-xs font-bold uppercase tracking-widest text-coral">
+          <section className="mt-12" aria-labelledby="enroll-live-title">
+            <h3 id="enroll-live-title" className="mb-4 text-xs font-bold uppercase tracking-widest text-coral">
               Curso actual
-            </h2>
+            </h3>
             <div className={`grid gap-4 ${liveCourses.length > 1 ? 'lg:grid-cols-2' : ''}`}>
               {liveCourses.map((course) => (
                 <Reveal key={course.id}>
@@ -172,9 +164,9 @@ export function EnrollPage() {
           <section className="mt-12" aria-labelledby="enroll-recorded-title">
             <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
               <div className="flex flex-wrap items-center gap-3">
-                <h2 id="enroll-recorded-title" className="text-xs font-bold uppercase tracking-widest text-ink-muted">
+                <h3 id="enroll-recorded-title" className="text-xs font-bold uppercase tracking-widest text-ink-muted">
                   Clases grabadas
-                </h2>
+                </h3>
                 <span className="rounded-full bg-coral/10 px-3 py-1 text-xs font-semibold text-coral">
                   Desde {formatCurrency(recordedFromPrice)}
                   {certificatePrice ? ` + ${formatCurrency(certificatePrice)} constancia` : ''}
@@ -210,6 +202,6 @@ export function EnrollPage() {
           </section>
         )}
       </div>
-    </div>
+    </section>
   );
 }

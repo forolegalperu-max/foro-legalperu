@@ -3,12 +3,10 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight, Menu, X } from 'lucide-react';
 import { navLinks } from '../../data/site';
 import { Logo } from './Logo';
-import { ENROLL_HASH, useIsEnrollPage } from '../../lib/useRoute';
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const isEnroll = useIsEnrollPage();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -27,11 +25,6 @@ export function Header() {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setMobileOpen(false);
-    if (isEnroll) {
-      // Desde la página de inscripción: volver al inicio y luego ir a la sección.
-      window.location.hash = href;
-      return;
-    }
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
@@ -68,12 +61,10 @@ export function Header() {
 
           <div className="hidden lg:block">
             <a
-              href={ENROLL_HASH}
+              href="#cursos"
+              onClick={(e) => handleNavClick(e, '#cursos')}
               data-cursor-hover
-              aria-current={isEnroll ? 'page' : undefined}
-              className={`group inline-flex items-center gap-1.5 rounded-full bg-coral text-cream text-sm font-bold px-6 py-3 transition-all duration-300 hover:bg-coral-dark hover:scale-105 ${
-                isEnroll ? '' : 'cta-pulse'
-              }`}
+              className="cta-pulse group inline-flex items-center gap-1.5 rounded-full bg-coral text-cream text-sm font-bold px-6 py-3 transition-all duration-300 hover:bg-coral-dark hover:scale-105"
             >
               Inscríbete aquí
               <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
@@ -120,8 +111,8 @@ export function Header() {
                 </motion.a>
               ))}
               <motion.a
-                href={ENROLL_HASH}
-                onClick={() => setMobileOpen(false)}
+                href="#cursos"
+                onClick={(e) => handleNavClick(e, '#cursos')}
                 variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }}
                 className="mt-4 inline-flex items-center rounded-full bg-coral text-cream text-base font-semibold px-6 py-3"
               >
