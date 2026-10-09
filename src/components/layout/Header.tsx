@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { ArrowRight, Menu, X } from 'lucide-react';
 import { navLinks } from '../../data/site';
 import { Logo } from './Logo';
+import { ENROLL_HASH, useIsEnrollPage } from '../../lib/useRoute';
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const isEnroll = useIsEnrollPage();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -25,6 +27,11 @@ export function Header() {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setMobileOpen(false);
+    if (isEnroll) {
+      // Desde la página de inscripción: volver al inicio y luego ir a la sección.
+      window.location.hash = href;
+      return;
+    }
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
@@ -61,12 +68,15 @@ export function Header() {
 
           <div className="hidden lg:block">
             <a
-              href="#cursos"
-              onClick={(e) => handleNavClick(e, '#cursos')}
+              href={ENROLL_HASH}
               data-cursor-hover
-              className="inline-flex items-center rounded-full bg-ink text-cream text-sm font-semibold px-5 py-2.5 hover:bg-coral transition-colors duration-300"
+              aria-current={isEnroll ? 'page' : undefined}
+              className={`group inline-flex items-center gap-1.5 rounded-full bg-coral text-cream text-sm font-bold px-6 py-3 transition-all duration-300 hover:bg-coral-dark hover:scale-105 ${
+                isEnroll ? '' : 'cta-pulse'
+              }`}
             >
-              Inscríbete ahora
+              Inscríbete aquí
+              <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
             </a>
           </div>
 
@@ -110,12 +120,12 @@ export function Header() {
                 </motion.a>
               ))}
               <motion.a
-                href="#cursos"
-                onClick={(e) => handleNavClick(e, '#cursos')}
+                href={ENROLL_HASH}
+                onClick={() => setMobileOpen(false)}
                 variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }}
                 className="mt-4 inline-flex items-center rounded-full bg-coral text-cream text-base font-semibold px-6 py-3"
               >
-                Inscríbete ahora
+                Inscríbete aquí
               </motion.a>
             </motion.nav>
           </motion.div>

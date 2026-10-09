@@ -18,6 +18,8 @@ export const brand = {
   whatsappLink: 'https://wa.link/8r62e1',
   whatsappNumber: '51946765063',
   paymentWhatsapp: '+51 946 765 063',
+  // Formulario de inscripción (Google Forms). Cada curso puede tener el suyo con `formUrl` en courses.ts.
+  formUrl: 'https://forms.gle/cH1ktWcNmaQS6D9t9',
 };
 
 export const navLinks = [

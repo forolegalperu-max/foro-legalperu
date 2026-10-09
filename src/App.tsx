@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { WhatsAppButton } from './components/layout/WhatsAppButton';
@@ -10,8 +11,23 @@ import { Benefits } from './components/sections/Benefits';
 import { Stats } from './components/sections/Stats';
 import { FAQ } from './components/sections/FAQ';
 import { CTA } from './components/sections/CTA';
+import { EnrollPage } from './components/pages/EnrollPage';
+import { useIsEnrollPage } from './lib/useRoute';
 
 function App() {
+  const isEnroll = useIsEnrollPage();
+
+  // Al cambiar de página: arriba del todo; al volver al inicio con un ancla (#cursos…), ir a esa sección.
+  useEffect(() => {
+    const hash = window.location.hash;
+    const anchor = !isEnroll && hash.length > 1 && !hash.startsWith('#/') ? hash : null;
+    if (anchor) {
+      requestAnimationFrame(() => document.querySelector(anchor)?.scrollIntoView({ block: 'start' }));
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [isEnroll]);
+
   return (
     <div className="min-h-screen bg-cream">
       <a
@@ -24,13 +40,19 @@ function App() {
       <ScrollProgress />
       <Header />
       <main id="main-content">
-        <Hero />
-        <CoursesSection />
-        <Library />
-        <Benefits />
-        <Stats />
-        <FAQ />
-        <CTA />
+        {isEnroll ? (
+          <EnrollPage />
+        ) : (
+          <>
+            <Hero />
+            <CoursesSection />
+            <Library />
+            <Benefits />
+            <Stats />
+            <FAQ />
+            <CTA />
+          </>
+        )}
       </main>
       <Footer />
       <WhatsAppButton />

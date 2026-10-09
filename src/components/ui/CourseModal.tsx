@@ -3,8 +3,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Calendar, Check, Clock, ExternalLink, MapPin, Phone, Star, X } from 'lucide-react';
 import type { Course } from '../../data/courses';
 import { teachers } from '../../data/teachers';
-import { brand } from '../../data/site';
 import { formatCurrency, formatDate } from '../../lib/utils';
+import { courseWhatsappHref } from '../../lib/whatsapp';
 
 interface CourseModalProps {
   course: Course | null;
@@ -26,13 +26,7 @@ export function CourseModal({ course, onClose }: CourseModalProps) {
   const teacher = course ? teachers.find((t) => t.id === course.teacherId) : null;
   const hasSpots = course ? course.spotsLeft != null && course.totalSpots != null : false;
 
-  const whatsappHref = course
-    ? `https://wa.me/${course.whatsappOverride ?? brand.whatsappNumber}?text=${encodeURIComponent(
-        course.isRecorded
-          ? `Hola, quiero inscribirme en el curso grabado "${course.name}".`
-          : `Hola Foro Legal, quiero inscribirme en el curso "${course.name}" (inicio ${formatDate(course.startDate)}).`
-      )}`
-    : '#';
+  const whatsappHref = course ? courseWhatsappHref(course) : '#';
 
   return (
     <AnimatePresence>
