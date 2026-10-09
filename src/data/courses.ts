@@ -5,6 +5,9 @@
 // ─────────────────────────────────────────────────────────────
 
 import penalistaCover from '../assets/curso-penalista.jpg';
+import plataformasCover from '../assets/curso-plataformas-judiciales.jpg';
+import complianceCover from '../assets/curso-compliance-360.jpg';
+import corporativoCover from '../assets/curso-abogado-corporativo.jpeg';
 
 export type CourseArea = 'Corporativo' | 'Compliance' | 'Contratos' | 'Práctica Judicial' | 'Penal';
 
@@ -117,6 +120,7 @@ export const courses: Course[] = [
   },
   {
     id: 'plataformas-judiciales-registrales',
+    cover: plataformasCover,
     name: 'I Curso Práctico de Plataformas Judiciales & Registrales',
     area: 'Práctica Judicial',
     summary: 'Aprende a moverte con seguridad en SINOE, CEJ, SUNARP, Visor BGR, SPIJ y el Tribunal Constitucional, con un enfoque 100% práctico.',
@@ -143,6 +147,7 @@ export const courses: Course[] = [
   },
   {
     id: 'compliance-360',
+    cover: complianceCover,
     name: 'Compliance 360°: Gestión Antisoborno, SPLAFT y Protección de Datos',
     area: 'Compliance',
     summary: 'Curso práctico grabado: sistemas de gestión antisoborno, SPLAFT y protección de datos personales.',
@@ -169,6 +174,7 @@ export const courses: Course[] = [
   },
   {
     id: 'rol-estrategico-abogado-corporativo',
+    cover: corporativoCover,
     name: 'El Rol Estratégico del Abogado Corporativo',
     area: 'Corporativo',
     summary: 'Herramientas para la práctica empresarial: derecho societario, contratos y compliance corporativo, ahora en clases grabadas.',

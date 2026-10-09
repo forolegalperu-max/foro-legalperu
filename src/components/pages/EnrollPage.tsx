@@ -110,7 +110,7 @@ function LiveCourse({ course }: { course: Course }) {
 function RecordedCourse({ course }: { course: Course }) {
   return (
     <article className="group flex h-full flex-col rounded-2xl bg-paper p-2.5 shadow-card ring-1 ring-ink/5 transition-transform duration-300 hover:-translate-y-1">
-      <CourseCover course={course} tag="Grabado" className="aspect-[16/10] rounded-xl" />
+      <CourseCover course={course} tag="Grabado" className="aspect-[4/5] rounded-xl" />
       <div className="flex flex-1 flex-col px-1.5 pb-1.5 pt-3">
         <h3 className="line-clamp-3 text-sm font-bold leading-snug text-ink">{course.name}</h3>
         <div className="mt-auto space-y-2.5 pt-3">
@@ -197,7 +197,7 @@ export function EnrollPage() {
             </div>
 
             {filteredRecorded.length > 0 ? (
-              <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 xl:grid-cols-4">
+              <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-4 xl:grid-cols-5">
                 {filteredRecorded.map((course) => (
                   <Reveal key={course.id} className="h-full" y={16}>
                     <RecordedCourse course={course} />
