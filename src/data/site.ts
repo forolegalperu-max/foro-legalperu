@@ -36,8 +36,6 @@ export const socialLinks = [
 ];
 
 export const missionVisionValues = {
-  history:
-    'Foro Legal nació en 2019 en Lima, cuando un grupo de abogados litigantes y docentes universitarios notó una brecha entre lo que se enseña en las aulas y lo que exige el ejercicio real de la profesión. Empezamos con un taller de redacción de contratos para 30 estudiantes en un auditorio prestado. Hoy somos una comunidad jurídica con presencia en más de 10 ciudades de Latinoamérica.',
   mission:
     'Formar profesionales del Derecho con criterio práctico, mediante programas dictados por quienes ejercen la profesión día a día, combinando rigor académico con casos reales del ejercicio legal.',
   vision:

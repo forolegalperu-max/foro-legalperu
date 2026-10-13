@@ -11,6 +11,8 @@ import complianceCover from '../assets/curso-compliance-360.jpg';
 import corporativoCover from '../assets/curso-abogado-corporativo.jpeg';
 import contratosCover from '../assets/curso-redaccion-contratos.jpg';
 import empresarialCover from '../assets/curso-derecho-empresarial.jpg';
+import inmobiliarioCover from '../assets/curso-inmobiliario-contratos.jpg';
+import inmobiliarioTemario from '../assets/temario-inmobiliario-contratos.jpg';
 
 export type CourseArea = 'Corporativo' | 'Compliance' | 'Contratos' | 'Práctica Judicial' | 'Penal';
 
@@ -63,6 +65,8 @@ export interface Course {
   isRecorded?: boolean;
   // Costo adicional opcional por constancia de participación (solo cursos grabados).
   certificateAddOnPrice?: number;
+  // Orden en la portada (menor = primero). Si falta, se ordena por fecha de inicio.
+  heroOrder?: number;
   // Formulario de inscripción propio de este curso. Si falta, se usa brand.formUrl (site.ts).
   formUrl?: string;
   // Imagen del temario (se abre ampliada desde la ventana "Temario").
@@ -122,6 +126,51 @@ export const courses: Course[] = [
       { label: 'Corporativo', price: 65, note: 'por persona, desde 3 participantes' },
     ],
     externalSyllabusUrl: 'https://canva.link/0n1jnxcnp69nxuq',
+    contactPhones: ['+51 946 765 063'],
+  },
+  {
+    id: 'taller-derecho-inmobiliario-contratos',
+    heroOrder: 1,
+    cover: inmobiliarioCover,
+    syllabusImage: inmobiliarioTemario,
+    name: 'Taller Práctico: Derecho Inmobiliario y Contratos',
+    area: 'Contratos',
+    summary: 'Maneja con seguridad los contratos que más se firman: promesa de compraventa, compraventa de inmueble y arrendamiento.',
+    description:
+      'Aprende a manejar con seguridad los contratos que más se firman en el día a día: promesa de compraventa, compraventa de inmueble y arrendamiento. Un taller 100% práctico con el abogado Iván Palacios, con modelos editables que podrás usar.',
+    startDate: '2026-11-04',
+    duration: '2 horas',
+    modality: 'Online en vivo',
+    sessions: 1,
+    price: 20,
+    currency: 'PEN',
+    featured: false,
+    level: 'Introductorio',
+    benefits: [
+      'Grabación de la sesión',
+      'Modelos de contratos editables',
+      'Material complementario',
+      'Constancia de participación a nombre de Foro Legal',
+    ],
+    schedule: [
+      {
+        date: 'Miércoles 4 de noviembre',
+        time: '8:00 p. m. – 10:00 p. m.',
+        topic: 'Taller práctico en vivo por Google Meet, con modelos de contratos editables',
+        speaker: 'Iván Palacios',
+      },
+    ],
+    contentModules: [
+      'Apertura con un caso real',
+      'Promesa de compraventa y arras',
+      'Compraventa de inmueble',
+      'Arrendamiento',
+      'La partida registral',
+      'Cláusulas que sirven en cualquier contrato',
+      'Preguntas y cierre',
+    ],
+    externalSyllabusUrl: 'https://canva.link/meh4lmbcu4yl3jm',
+    formUrl: 'https://forms.gle/HTVqENr2gnMhhMb2A',
     contactPhones: ['+51 946 765 063'],
   },
   {

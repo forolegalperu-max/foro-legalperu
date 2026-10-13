@@ -3,12 +3,19 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, ArrowUpRight, Sparkles, ZoomIn } from 'lucide-react';
 import { brand } from '../../data/site';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
+import { courses, type Course } from '../../data/courses';
 import { Lightbox } from '../ui/Lightbox';
-import proximoCursoImg from '../../assets/curso-penalista.jpg';
-import temarioImg from '../../assets/temario-penalista.jpg';
 
-const cursoAlt = 'Próximo curso: I Curso Práctico: El Rol Estratégico del Abogado Penalista, del 14 al 16 de octubre, modalidad virtual';
-const temarioAlt = 'Temario del I Curso Práctico: El Rol Estratégico del Abogado Penalista';
+// Cursos en vivo con flyer. Orden: `heroOrder` (courses.ts) y, si no hay, fecha de inicio. Se muestran los dos primeros.
+const featured = courses
+  .filter((c) => !c.isRecorded && !c.comingSoon && c.cover)
+  .sort((a, b) => (a.heroOrder ?? 99) - (b.heroOrder ?? 99) || a.startDate.localeCompare(b.startDate))
+  .slice(0, 2);
+
+const coverAlt = (course: Course) => `Flyer: ${course.name}`;
+const syllabusAlt = (course: Course) => `Temario: ${course.name}`;
+const formatDay = (iso: string) =>
+  new Date(`${iso}T00:00:00`).toLocaleDateString('es-PE', { day: 'numeric', month: 'long' });
 
 function scrollTo(id: string) {
   document.querySelector(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -18,6 +25,10 @@ export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
+  const [frontIndex, setFrontIndex] = useState(0);
+  const front = featured[frontIndex];
+  const stacked = featured.length > 1;
+  const back = stacked ? featured[(frontIndex + 1) % featured.length] : null;
 
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -126,93 +137,157 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Visual column */}
-        <div className="relative perspective-1000 mx-auto w-full max-w-md">
-          <motion.div
-            style={reducedMotion ? undefined : { rotateX, rotateY }}
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="group relative rounded-3xl overflow-hidden shadow-soft cursor-zoom-in"
-            onClick={() => setLightbox({ src: proximoCursoImg, alt: cursoAlt })}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') setLightbox({ src: proximoCursoImg, alt: cursoAlt });
-            }}
-            aria-label="Ampliar imagen del curso"
-            data-cursor-hover
-          >
-            <img src={proximoCursoImg} alt={cursoAlt} className="block w-full h-auto" />
-            <div className="absolute inset-0 flex items-center justify-center bg-ink/0 group-hover:bg-ink/30 transition-colors duration-300">
-              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-cream/90 text-ink opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300">
-                <ZoomIn size={18} />
-              </span>
-            </div>
-          </motion.div>
+        {/* Visual column: flyers de los cursos en vivo, apilados (el de atrás pasa al frente al pulsarlo) */}
+        {front && (
+          <div className="relative perspective-1000 mx-auto w-full max-w-md">
+            <motion.div
+              style={reducedMotion ? undefined : { rotateX, rotateY }}
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative aspect-[4/5] w-full"
+            >
+              {featured.map((course, i) => {
+                const isFront = i === frontIndex;
+                return (
+                  <motion.button
+                    key={course.id}
+                    type="button"
+                    onClick={() =>
+                      isFront ? setLightbox({ src: course.cover!, alt: coverAlt(course) }) : setFrontIndex(i)
+                    }
+                    animate={
+                      isFront
+                        ? { x: '0%', y: '0%', rotate: stacked ? -2 : 0, scale: 1 }
+                        : { x: '24%', y: '-14%', rotate: 6, scale: 0.95 }
+                    }
+                    whileHover={isFront || reducedMotion ? undefined : { x: '30%', rotate: 8 }}
+                    transition={{ duration: reducedMotion ? 0 : 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    style={{ zIndex: isFront ? 2 : 1 }}
+                    className={`group absolute left-0 block overflow-hidden rounded-3xl text-left ${
+                      stacked ? 'top-[18%] w-[78%]' : 'top-0 w-full'
+                    } ${isFront ? 'cursor-zoom-in shadow-soft' : 'shadow-card'}`}
+                    aria-label={isFront ? `Ampliar imagen de ${course.name}` : `Mostrar ${course.name}`}
+                    data-cursor-hover
+                  >
+                    <img src={course.cover} alt={coverAlt(course)} className="block h-auto w-full" />
+                    {isFront && (
+                      <span className="absolute inset-0 flex items-center justify-center bg-ink/0 transition-colors duration-300 group-hover:bg-ink/30">
+                        <span className="flex h-11 w-11 scale-90 items-center justify-center rounded-full bg-cream/90 text-ink opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100">
+                          <ZoomIn size={18} />
+                        </span>
+                      </span>
+                    )}
+                  </motion.button>
+                );
+              })}
 
-          {/* temario thumbnail — mobile (inline, below the main image) */}
-          <button
-            type="button"
-            onClick={() => setLightbox({ src: temarioImg, alt: temarioAlt })}
-            data-cursor-hover
-            className="group mt-4 flex w-full items-center gap-3 rounded-2xl bg-paper p-2.5 shadow-card sm:hidden"
-          >
-            <span className="block h-14 w-14 shrink-0 overflow-hidden rounded-lg">
-              <img src={temarioImg} alt={temarioAlt} className="block h-full w-full object-cover" />
-            </span>
-            <span className="flex flex-1 items-center justify-between">
-              <span className="text-left">
-                <span className="block text-xs font-semibold text-ink">Ver temario completo</span>
-                <span className="block text-[11px] text-ink-muted">Programa de las 3 sesiones</span>
-              </span>
-              <ZoomIn size={16} className="mr-1.5 shrink-0 text-ink-muted" />
-            </span>
-          </button>
+              {back && (
+                <button
+                  type="button"
+                  onClick={() => setFrontIndex((frontIndex + 1) % featured.length)}
+                  data-cursor-hover
+                  className="absolute right-0 top-0 z-[3] flex items-center gap-1.5 rounded-full bg-ink px-3.5 py-2 text-xs font-semibold text-cream shadow-card transition-colors hover:bg-coral"
+                >
+                  Otro curso · {formatDay(back.startDate)}
+                  <ArrowRight size={13} />
+                </button>
+              )}
+            </motion.div>
 
-          {/* floating badge 1 */}
-          <motion.div
-            style={reducedMotion ? undefined : { x: badgeX, y: badgeY }}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.7 }}
-            className="absolute -top-6 -left-8 rounded-2xl bg-paper shadow-card px-4 py-3 hidden sm:block"
-          >
-            <p className="text-[11px] text-ink-muted">Constancia</p>
-            <p className="font-display text-sm font-semibold text-ink">De participación ✓</p>
-          </motion.div>
+            {stacked && (
+              <div className="mt-6 flex items-center justify-center gap-1">
+                {featured.map((course, i) => (
+                  <button
+                    key={course.id}
+                    type="button"
+                    onClick={() => setFrontIndex(i)}
+                    aria-label={`Ver ${course.name}`}
+                    aria-pressed={i === frontIndex}
+                    data-cursor-hover
+                    className="p-1.5"
+                  >
+                    <span
+                      className={`block h-2 rounded-full transition-all duration-300 ${
+                        i === frontIndex ? 'w-6 bg-coral' : 'w-2 bg-ink/20'
+                      }`}
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+            {stacked && (
+              <p className="mt-1 text-center text-xs text-ink-muted">{featured.length} cursos abiertos · toca el de atrás para verlo</p>
+            )}
 
-          {/* floating badge 2 */}
-          <motion.div
-            style={reducedMotion ? undefined : { x: badgeX2, y: badgeY2 }}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.85 }}
-            className="absolute -bottom-7 -right-6 rounded-2xl bg-coral text-cream shadow-card px-4 py-3 hidden sm:block"
-          >
-            <p className="text-[11px] text-cream/80">Próximo inicio</p>
-            <p className="font-display text-sm font-semibold">14 de octubre</p>
-          </motion.div>
+            {/* temario thumbnail — mobile (inline, below the images) */}
+            {front.syllabusImage && (
+              <button
+                type="button"
+                onClick={() => setLightbox({ src: front.syllabusImage!, alt: syllabusAlt(front) })}
+                data-cursor-hover
+                className="group mt-4 flex w-full items-center gap-3 rounded-2xl bg-paper p-2.5 shadow-card sm:hidden"
+              >
+                <span className="block h-14 w-14 shrink-0 overflow-hidden rounded-lg">
+                  <img src={front.syllabusImage} alt={syllabusAlt(front)} className="block h-full w-full object-cover" />
+                </span>
+                <span className="flex flex-1 items-center justify-between">
+                  <span className="text-left">
+                    <span className="block text-xs font-semibold text-ink">Ver temario completo</span>
+                    <span className="block text-[11px] text-ink-muted">{front.name}</span>
+                  </span>
+                  <ZoomIn size={16} className="mr-1.5 shrink-0 text-ink-muted" />
+                </span>
+              </button>
+            )}
 
-          {/* temario thumbnail */}
-          <motion.button
-            type="button"
-            onClick={() => setLightbox({ src: temarioImg, alt: temarioAlt })}
-            data-cursor-hover
-            initial={{ opacity: 0, y: 10, rotate: -6 }}
-            animate={{ opacity: 1, y: 0, rotate: -6 }}
-            whileHover={{ rotate: 0, scale: 1.04 }}
-            transition={{ duration: 0.7, delay: 0.95 }}
-            className="group absolute bottom-20 -left-10 hidden sm:block w-24 overflow-hidden rounded-xl bg-paper p-1 shadow-card"
-          >
-            <img src={temarioImg} alt={temarioAlt} className="block w-full h-auto rounded-lg" />
-            <span className="absolute inset-0 flex items-center justify-center rounded-xl bg-ink/0 group-hover:bg-ink/40 transition-colors duration-300">
-              <span className="text-[10px] font-semibold text-cream opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Ver temario
-              </span>
-            </span>
-          </motion.button>
-        </div>
+            {/* floating badge 1 */}
+            <motion.div
+              style={reducedMotion ? undefined : { x: badgeX, y: badgeY }}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.7 }}
+              className="absolute -top-6 -left-8 rounded-2xl bg-paper shadow-card px-4 py-3 hidden sm:block"
+            >
+              <p className="text-[11px] text-ink-muted">Constancia</p>
+              <p className="font-display text-sm font-semibold text-ink">De participación ✓</p>
+            </motion.div>
+
+            {/* floating badge 2: fecha del curso que está al frente */}
+            <motion.div
+              style={reducedMotion ? undefined : { x: badgeX2, y: badgeY2 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.85 }}
+              className="absolute -bottom-7 -right-6 rounded-2xl bg-coral text-cream shadow-card px-4 py-3 hidden sm:block"
+            >
+              <p className="text-[11px] text-cream/80">Inicio</p>
+              <p className="font-display text-sm font-semibold">{formatDay(front.startDate)}</p>
+            </motion.div>
+
+            {/* temario thumbnail */}
+            {front.syllabusImage && (
+              <motion.button
+                key={front.id}
+                type="button"
+                onClick={() => setLightbox({ src: front.syllabusImage!, alt: syllabusAlt(front) })}
+                data-cursor-hover
+                initial={{ opacity: 0, y: 10, rotate: -6 }}
+                animate={{ opacity: 1, y: 0, rotate: -6 }}
+                whileHover={{ rotate: 0, scale: 1.04 }}
+                transition={{ duration: 0.7, delay: 0.3 }}
+                className="group absolute bottom-20 -left-10 z-[3] hidden sm:block w-24 overflow-hidden rounded-xl bg-paper p-1 shadow-card"
+              >
+                <img src={front.syllabusImage} alt={syllabusAlt(front)} className="block w-full h-auto rounded-lg" />
+                <span className="absolute inset-0 flex items-center justify-center rounded-xl bg-ink/0 group-hover:bg-ink/40 transition-colors duration-300">
+                  <span className="text-[10px] font-semibold text-cream opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    Ver temario
+                  </span>
+                </span>
+              </motion.button>
+            )}
+          </div>
+        )}
       </div>
 
       <Lightbox src={lightbox?.src ?? null} alt={lightbox?.alt ?? ''} onClose={() => setLightbox(null)} />
