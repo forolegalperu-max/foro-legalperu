@@ -98,9 +98,9 @@ function RecordedCourse({ course, onSyllabus }: CardProps) {
         <div className="mt-auto space-y-2.5 pt-3">
           <div className="leading-tight">
             <span className="font-display text-lg font-semibold text-ink">{formatCurrency(course.price)}</span>
-            {course.certificateAddOnPrice && (
-              <span className="ml-1.5 text-[11px] text-ink-muted">+ {formatCurrency(course.certificateAddOnPrice)} constancia</span>
-            )}
+            <span className="ml-1.5 text-[11px] text-ink-muted">
+              {course.certificateAddOnPrice ? `+ ${formatCurrency(course.certificateAddOnPrice)} constancia` : 'incluye constancia'}
+            </span>
           </div>
           <EnrollButtons course={course} onSyllabus={hasSyllabus(course) ? () => onSyllabus(course) : undefined} />
         </div>
@@ -153,7 +153,7 @@ export function EnrollSection() {
                 </h3>
                 <span className="rounded-full bg-coral/10 px-3 py-1 text-xs font-semibold text-coral">
                   Desde {formatCurrency(recordedFromPrice)}
-                  {certificatePrice ? ` + ${formatCurrency(certificatePrice)} constancia` : ''}
+                  {certificatePrice ? ` + ${formatCurrency(certificatePrice)} constancia` : ' · constancia incluida'}
                 </span>
               </div>
 

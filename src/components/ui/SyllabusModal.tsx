@@ -183,8 +183,10 @@ export function SyllabusModal({ course, onClose }: SyllabusModalProps) {
                   ) : (
                     <span className="font-display text-2xl font-semibold text-ink">{formatCurrency(course.price)}</span>
                   )}
-                  {course.certificateAddOnPrice && (
-                    <span className="ml-2 text-xs text-ink-muted">+ {formatCurrency(course.certificateAddOnPrice)} constancia</span>
+                  {course.isRecorded && (
+                    <span className="ml-2 text-xs text-ink-muted">
+                      {course.certificateAddOnPrice ? `+ ${formatCurrency(course.certificateAddOnPrice)} constancia` : 'incluye constancia'}
+                    </span>
                   )}
                 </div>
                 <EnrollButtons course={course} />

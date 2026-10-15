@@ -65,7 +65,7 @@ export interface Course {
   whatsappOverride?: string;
   // true = curso grabado/asíncrono de acceso inmediato (sin fecha de inicio en vivo).
   isRecorded?: boolean;
-  // Costo adicional opcional por constancia de participación (solo cursos grabados).
+  // Costo adicional opcional por constancia (solo cursos grabados). Si falta, la constancia va incluida en el precio.
   certificateAddOnPrice?: number;
   // Orden en la portada (menor = primero). Si falta, se ordena por fecha de inicio.
   heroOrder?: number;
@@ -152,7 +152,7 @@ export const courses: Course[] = [
     featured: false,
     level: 'Intermedio',
     isRecorded: true,
-    benefits: ['Acceso a las 3 sesiones grabadas', 'Materiales y bibliografía'],
+    benefits: ['Acceso a las 3 sesiones grabadas', 'Materiales y bibliografía', 'Constancia de participación incluida'],
     contentModules: [
       '"Los primeros 120 días: cómo se gana (o se pierde) el caso antes de la acusación" (La Investigación Preparatoria) — Dan Torres & César Escarcena',
       '"La audiencia que nadie te enseñó a litigar: el filtro que decide si hay juicio" (La Etapa Intermedia) — Alex Montes',
@@ -223,7 +223,7 @@ export const courses: Course[] = [
     featured: false,
     level: 'Introductorio',
     isRecorded: true,
-    benefits: ['Clases 100% prácticas', 'Material de estudio', 'Clases grabadas'],
+    benefits: ['Clases 100% prácticas', 'Material de estudio', 'Clases grabadas', 'Constancia de participación incluida'],
     contentModules: [
       '¿Cómo presentar una demanda? + Taller: Lectura de Expediente (SINOE y CEJ) — Fiorella Luna',
       'SUNARP, Visor BGR, Conoce Aquí y Síguelo+ / Taller: ¿Cómo leer una partida? — Manuel Monroe',
@@ -231,7 +231,6 @@ export const courses: Course[] = [
     ],
     contactPhones: ['+51 946 765 063'],
     whatsappOverride: '51946765063',
-    certificateAddOnPrice: 5,
   },
   {
     id: 'compliance-360',
@@ -245,12 +244,12 @@ export const courses: Course[] = [
     duration: '3 módulos',
     modality: 'Grabado',
     sessions: 3,
-    price: 45,
+    price: 35,
     currency: 'PEN',
     featured: false,
     level: 'Intermedio',
     isRecorded: true,
-    benefits: ['Clases 100% prácticas', 'Material de estudio', 'Clases grabadas'],
+    benefits: ['Clases 100% prácticas', 'Material de estudio', 'Clases grabadas', 'Constancia de participación incluida'],
     contentModules: [
       'Sistemas de Gestión de Compliance — David Caballero',
       'SPLAFT (Prevención de Lavado de Activos) — Carlos Hermoza',
@@ -258,7 +257,6 @@ export const courses: Course[] = [
     ],
     contactPhones: ['+51 946 765 063'],
     whatsappOverride: '51946765063',
-    certificateAddOnPrice: 5,
   },
   {
     id: 'rol-estrategico-abogado-corporativo',
@@ -277,7 +275,7 @@ export const courses: Course[] = [
     featured: false,
     level: 'Introductorio',
     isRecorded: true,
-    benefits: ['Clases 100% prácticas', 'Material de estudio', 'Clases grabadas'],
+    benefits: ['Clases 100% prácticas', 'Material de estudio', 'Clases grabadas', 'Constancia de participación incluida'],
     contentModules: [
       'Cómo ingresar al mundo corporativo — Angelo Enciso',
       'Derecho Societario Aplicado — Gerardo Guzmán',
@@ -286,7 +284,6 @@ export const courses: Course[] = [
     ],
     contactPhones: ['+51 946 765 063'],
     whatsappOverride: '51946765063',
-    certificateAddOnPrice: 5,
   },
   {
     id: 'redaccion-contratos-tipicos',
@@ -305,7 +302,7 @@ export const courses: Course[] = [
     featured: false,
     level: 'Introductorio',
     isRecorded: true,
-    benefits: ['Clases 100% prácticas', 'Material de estudio', 'Clases grabadas'],
+    benefits: ['Clases 100% prácticas', 'Material de estudio', 'Clases grabadas', 'Constancia de participación incluida'],
     contentModules: [
       'Introducción a la redacción contractual y elaboración del contrato de compraventa',
       'Contrato de arrendamiento con cláusula de allanamiento a futuro (desalojo) y contrato de locación de servicios',
@@ -313,7 +310,6 @@ export const courses: Course[] = [
     ],
     contactPhones: ['+51 946 765 063'],
     whatsappOverride: '51946765063',
-    certificateAddOnPrice: 5,
   },
   {
     id: 'derecho-empresarial-gestion-legal',
@@ -332,7 +328,7 @@ export const courses: Course[] = [
     featured: false,
     level: 'Introductorio',
     isRecorded: true,
-    benefits: ['Clases 100% prácticas', 'Material de estudio', 'Clases grabadas'],
+    benefits: ['Clases 100% prácticas', 'Material de estudio', 'Clases grabadas', 'Constancia de participación incluida'],
     contentModules: [
       'Constitución y formalización de empresas',
       'Registro de marcas y protección de la propiedad intelectual',
@@ -341,7 +337,6 @@ export const courses: Course[] = [
     ],
     contactPhones: ['+51 946 765 063'],
     whatsappOverride: '51946765063',
-    certificateAddOnPrice: 5,
   },
 ];
 

@@ -5,7 +5,7 @@ import { formatCurrency, formatDate } from './utils';
 // Mensaje prefijado de inscripción por curso. Edita aquí el texto.
 export function courseWhatsappMessage(course: Course) {
   if (course.isRecorded) {
-    const cert = course.certificateAddOnPrice ? ` (con constancia opcional +${formatCurrency(course.certificateAddOnPrice)})` : '';
+    const cert = course.certificateAddOnPrice ? ` (con constancia opcional +${formatCurrency(course.certificateAddOnPrice)})` : ' (incluye constancia)';
     return `Hola Foro Legal, quiero inscribirme en el curso grabado "${course.name}" por ${formatCurrency(course.price)}${cert}.`;
   }
   return `Hola Foro Legal, quiero inscribirme en el curso "${course.name}" (inicio ${formatDate(course.startDate)}).`;
