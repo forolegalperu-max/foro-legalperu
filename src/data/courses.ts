@@ -11,6 +11,8 @@ import complianceCover from '../assets/curso-compliance-360.jpg';
 import corporativoCover from '../assets/curso-abogado-corporativo.jpeg';
 import contratosCover from '../assets/curso-redaccion-contratos.jpg';
 import empresarialCover from '../assets/curso-derecho-empresarial.jpg';
+import empresarialIICover from '../assets/curso-empresarial-ii.jpg';
+import empresarialIITemario from '../assets/temario-empresarial-ii.jpg';
 import inmobiliarioCover from '../assets/curso-inmobiliario-contratos.jpg';
 import inmobiliarioTemario from '../assets/temario-inmobiliario-contratos.jpg';
 
@@ -79,58 +81,89 @@ export interface Course {
 
 export const courses: Course[] = [
   {
+    id: 'ii-derecho-empresarial-gestion-legal',
+    heroOrder: 1,
+    cover: empresarialIICover,
+    syllabusImage: empresarialIITemario,
+    name: 'II Curso Práctico en Derecho Empresarial & Gestión Legal de Negocios',
+    area: 'Corporativo',
+    summary: 'Previene riesgos laborales, negocia contratos empresariales y constituye una empresa con seguridad jurídica, con un enfoque práctico.',
+    description:
+      'Si quieres emprender, trabajar con empresas o fortalecer tu perfil en el mundo corporativo: en 3 noches de formación aprenderás a prevenir riesgos laborales, negociar contratos empresariales y constituir una empresa con seguridad jurídica, de la mano de especialistas.',
+    startDate: '2026-11-17',
+    duration: '3 noches',
+    modality: 'Online en vivo',
+    sessions: 3,
+    price: 35,
+    currency: 'PEN',
+    featured: true,
+    level: 'Intermedio',
+    benefits: [
+      'Acceso a las 3 sesiones en vivo',
+      'Grabaciones para repasar las clases',
+      'Material autorizado por los ponentes',
+      'Bibliografía complementaria',
+      'Constancia de participación a nombre de Foro Legal',
+      'Formación práctica con especialistas en cada materia',
+    ],
+    schedule: [
+      {
+        date: 'Martes 17 de noviembre',
+        time: '9:00 p. m. – 10:30 p. m.',
+        topic: 'Derecho laboral para empresas y emprendedores: contrata sin riesgos',
+        speaker: 'Dr. Lucas Plada',
+      },
+      {
+        date: 'Miércoles 18 de noviembre',
+        time: '9:00 p. m. – 10:30 p. m.',
+        topic: 'Contratos empresariales y financieros: préstamos, garantías y compraventa de empresas',
+        speaker: 'Dr. Gerardo Guzmán',
+      },
+      {
+        date: 'Jueves 19 de noviembre',
+        time: '9:00 p. m. – 10:30 p. m.',
+        topic: 'Constituye tu empresa de principio a fin: sociedad, minuta, inscripción en SUNARP, actas y poderes',
+        speaker: 'Dra. Rosa Milagros Chancafe',
+      },
+    ],
+    pricingTiers: [
+      { label: 'Estudiantes', price: 30 },
+      { label: 'Público general', price: 35 },
+    ],
+    externalSyllabusUrl: 'https://canva.link/ihdwjy8sxv9z0iq',
+    formUrl: 'https://forms.gle/naVbRg7yPBcJ4SRr6',
+    contactPhones: ['+51 946 765 063'],
+  },
+  {
     id: 'rol-estrategico-abogado-penalista',
     name: 'I Curso Práctico: El Rol Estratégico del Abogado Penalista',
     area: 'Penal',
     summary: 'Conoce cómo piensa y litiga un abogado penalista en cada etapa del proceso: investigación preparatoria, etapa intermedia y juzgamiento.',
     description:
-      '¿Quieres conocer cómo piensa y litiga un abogado penalista en cada etapa del proceso? Tres sesiones prácticas con abogados penalistas en ejercicio, recorriendo la investigación preparatoria, la etapa intermedia y el juzgamiento.',
+      '¿Quieres conocer cómo piensa y litiga un abogado penalista en cada etapa del proceso? Tres sesiones prácticas grabadas con abogados penalistas en ejercicio, recorriendo la investigación preparatoria, la etapa intermedia y el juzgamiento.',
     cover: penalistaCover,
     syllabusImage: penalistaTemario,
     startDate: '2026-10-14',
-    duration: '3 días',
-    modality: 'Online en vivo',
+    duration: '3 sesiones',
+    modality: 'Grabado',
     sessions: 3,
-    price: 50,
+    price: 35,
     currency: 'PEN',
-    featured: true,
+    featured: false,
     level: 'Intermedio',
-    benefits: [
-      'Acceso a las 3 sesiones en vivo y sus grabaciones',
-      'Materiales y bibliografía',
-      'Constancia de participación',
-    ],
-    schedule: [
-      {
-        date: '14 de octubre',
-        time: '7:00 p.m. – 10:00 p.m.',
-        topic: '"Los primeros 120 días: cómo se gana (o se pierde) el caso antes de la acusación" (La Investigación Preparatoria)',
-        speaker: 'Dan Torres & César Escarcena',
-      },
-      {
-        date: '15 de octubre',
-        time: '7:00 p.m. – 8:30 p.m.',
-        topic: '"La audiencia que nadie te enseñó a litigar: el filtro que decide si hay juicio" (La Etapa Intermedia)',
-        speaker: 'Alex Montes',
-      },
-      {
-        date: '16 de octubre',
-        time: '7:00 p.m. – 8:30 p.m.',
-        topic: '"Cara a cara con el Juez: litigación oral para ganar en la sala de audiencias" (El Juzgamiento)',
-        speaker: 'Benji Espinoza',
-      },
-    ],
-    pricingTiers: [
-      { label: 'Estudiantes', price: 50 },
-      { label: 'Público general', price: 70 },
-      { label: 'Corporativo', price: 65, note: 'por persona, desde 3 participantes' },
+    isRecorded: true,
+    benefits: ['Acceso a las 3 sesiones grabadas', 'Materiales y bibliografía'],
+    contentModules: [
+      '"Los primeros 120 días: cómo se gana (o se pierde) el caso antes de la acusación" (La Investigación Preparatoria) — Dan Torres & César Escarcena',
+      '"La audiencia que nadie te enseñó a litigar: el filtro que decide si hay juicio" (La Etapa Intermedia) — Alex Montes',
+      '"Cara a cara con el Juez: litigación oral para ganar en la sala de audiencias" (El Juzgamiento) — Benji Espinoza',
     ],
     externalSyllabusUrl: 'https://canva.link/0n1jnxcnp69nxuq',
     contactPhones: ['+51 946 765 063'],
   },
   {
     id: 'taller-derecho-inmobiliario-contratos',
-    heroOrder: 1,
+    heroOrder: 2,
     cover: inmobiliarioCover,
     syllabusImage: inmobiliarioTemario,
     name: 'Taller Práctico: Derecho Inmobiliario y Contratos',

@@ -176,7 +176,13 @@ export function SyllabusModal({ course, onClose }: SyllabusModalProps) {
 
               <div className="flex flex-wrap items-center justify-between gap-3 border-t border-ink/10 bg-cream px-6 py-4 sm:px-8">
                 <div className="leading-tight">
-                  <span className="font-display text-2xl font-semibold text-ink">{formatCurrency(course.price)}</span>
+                  {course.pricingTiers ? (
+                    <span className="block text-xs font-semibold text-ink">
+                      {course.pricingTiers.map((t) => `${t.label} ${formatCurrency(t.price)}`).join(' · ')}
+                    </span>
+                  ) : (
+                    <span className="font-display text-2xl font-semibold text-ink">{formatCurrency(course.price)}</span>
+                  )}
                   {course.certificateAddOnPrice && (
                     <span className="ml-2 text-xs text-ink-muted">+ {formatCurrency(course.certificateAddOnPrice)} constancia</span>
                   )}

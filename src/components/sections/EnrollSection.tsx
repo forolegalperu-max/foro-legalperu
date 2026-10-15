@@ -71,10 +71,17 @@ function LiveCourse({ course, onSyllabus }: CardProps) {
         )}
 
         <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-4">
-          <span className="font-display text-2xl font-semibold text-ink">
-            {course.pricingTiers && <span className="mr-1 text-xs font-normal text-ink-muted">desde</span>}
-            {formatCurrency(lowestPrice)}
-          </span>
+          <div className="leading-tight">
+            <span className="font-display text-2xl font-semibold text-ink">
+              {course.pricingTiers && <span className="mr-1 text-xs font-normal text-ink-muted">desde</span>}
+              {formatCurrency(lowestPrice)}
+            </span>
+            {course.pricingTiers && (
+              <span className="mt-0.5 block text-[11px] text-ink-muted">
+                {course.pricingTiers.map((t) => `${t.label} ${formatCurrency(t.price)}`).join(' · ')}
+              </span>
+            )}
+          </div>
           <EnrollButtons course={course} onSyllabus={hasSyllabus(course) ? () => onSyllabus(course) : undefined} />
         </div>
       </div>
